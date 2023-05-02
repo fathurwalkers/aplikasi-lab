@@ -4,7 +4,7 @@
             <div class="sidebar-brand-icon">
                 <img src="{{ asset('assets/ruangadmin') }}/img/logo/logo2.png">
             </div>
-            <div class="sidebar-brand-text mx-3">UJIAN POLISI</div>
+            <div class="sidebar-brand-text mx-3">PEMINJAMAN LAB</div>
         </a>
         <hr class="sidebar-divider my-0">
         <li class="nav-item">
@@ -26,14 +26,14 @@
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Manajemen Data</h6>
-                    <a class="collapse-item" href="{{ route('data-peserta') }}">Master Peserta</a>
-                    <a class="collapse-item" href="{{ route('data-petugas') }}">Master Petugas</a>
-                    <a class="collapse-item" href="{{ route('data-ukom') }}">Master UKOM</a>
+                    <a class="collapse-item" href="#">Data Pengguna</a>
+                    <a class="collapse-item" href="#">Data Lab</a>
+                    <a class="collapse-item" href="#">Data Laporan</a>
                 </div>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('bank-soal') }}">
+            <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-palette"></i>
                 <span>Bank Soal</span>
             </a>
@@ -47,8 +47,8 @@
             <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Manajemen UKOM</h6>
-                    <a class="collapse-item" href="{{ route('jadwal-ujian') }}">Uji Kompetensi</a>
-                    <a class="collapse-item" href="{{ route('hasil-ujian') }}">Hasil Ujian</a>
+                    <a class="collapse-item" href="#">Uji Kompetensi</a>
+                    <a class="collapse-item" href="#">Hasil Ujian</a>
                 </div>
             </div>
         </li>
@@ -82,7 +82,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User Management</h6>
                     {{-- <a class="collapse-item" href="simple-tables.html">Administrator</a> --}}
-                    <a class="collapse-item" href="{{ route('data-akun') }}">User Akun</a>
+                    <a class="collapse-item" href="#">User Akun</a>
                 </div>
             </div>
         </li>

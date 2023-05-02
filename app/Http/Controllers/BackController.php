@@ -22,14 +22,14 @@ class BackController extends Controller
 
     public function index()
     {
-        $users = session('data_login');
-        if($users->login_level == "user"){
-            return redirect()->route('client-index')->with('status', 'Maaf anda tidak punya akses ke halaman ini.');
-        }
+        // $users = session('data_login');
+        // if($users->login_level == "user"){
+        //     return redirect()->route('client-index')->with('status', 'Maaf anda tidak punya akses ke halaman ini.');
+        // }
         return view('dashboard.index');
     }
 
-    public function login_admin()
+    public function login()
     {
         $users = session('data_login');
         if ($users) {
