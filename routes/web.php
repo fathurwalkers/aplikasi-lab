@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BackController;
+use App\Http\Controllers\GenerateController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,4 +31,9 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
         Route::get('/', [BackController::class, 'daftar_invoice'])->name('daftar-invoice');
     });
 
+});
+
+Route::group(["prefix" => "generate"], function () {
+    Route::get('/pengguna', [GenerateController::class, 'generate_pengguna'])->name('generate-pengguna');
+    Route::get('/default-pengguna', [GenerateController::class, 'generate_default_pengguna'])->name('generate-default-pengguna');
 });
