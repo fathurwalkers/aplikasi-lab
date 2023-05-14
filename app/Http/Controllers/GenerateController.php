@@ -17,5 +17,8 @@ use App\Models\Penawaran;
 
 class GenerateController extends Controller
 {
-    //
+    public function generate_pengguna()
+    {
+        //
+    }
 }
