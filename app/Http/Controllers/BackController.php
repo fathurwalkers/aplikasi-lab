@@ -22,10 +22,11 @@ class BackController extends Controller
 
     public function index()
     {
-        // $users = session('data_login');
-        // if($users->login_level == "user"){
-        //     return redirect()->route('client-index')->with('status', 'Maaf anda tidak punya akses ke halaman ini.');
-        // }
+        $users = session('data_login');
+        dd($users);
+        if($users->login_level == "user"){
+            return redirect()->route('client-index')->with('status', 'Maaf anda tidak punya akses ke halaman ini.');
+        }
         return view('dashboard.index');
     }
 
@@ -35,7 +36,7 @@ class BackController extends Controller
         if ($users) {
             return redirect()->route('dashboard');
         }
-        return view('login-admin');
+        return view('login');
     }
 
     public function logout(Request $request)
@@ -48,19 +49,13 @@ class BackController extends Controller
                 $users = session('data_login');
                 $request->session()->forget(['data_login']);
                 $request->session()->flush();
-                return redirect()->route('login-admin')->with('status', 'Anda telah logout!');
+                return redirect()->route('login')->with('status', 'Anda telah logout!');
                 break;
             case 'user':
                 $users = session('data_login');
                 $request->session()->forget(['data_login']);
                 $request->session()->flush();
-                return redirect()->route('login-client')->with('status', 'Anda telah logout!');
-                break;
-            case 'pembina':
-                $users = session('data_login');
-                $request->session()->forget(['data_login']);
-                $request->session()->flush();
-                return redirect()->route('login-client')->with('status', 'Anda telah logout!');
+                return redirect()->route('login')->with('status', 'Anda telah logout!');
                 break;
         }
     }
@@ -77,7 +72,7 @@ class BackController extends Controller
         switch ($data_login->login_level) {
             case 'admin':
                 if ($cek_request == "user") {
-                    return redirect()->route('login-client')->with('status', 'Maaf anda tidak dapat masuk menggunakan akun Administrator pada Aplikasi Client, silahkan masuk ke Akun Administrator pada Halaman Administrator melalui Website');
+                    return redirect()->route('login')->with('status', 'Maaf anda tidak dapat masuk menggunakan akun Administrator pada Aplikasi Client, silahkan masuk ke Akun Administrator pada Halaman Administrator melalui Website');
                 }
                 $cek_password = Hash::check($request->login_password, $data_login->login_password);
                 if ($data_login) {
@@ -89,19 +84,7 @@ class BackController extends Controller
                 break;
             case 'user':
                 if ($cek_request == "admin") {
-                    return redirect()->route('login-admin')->with('status', 'Maaf anda tidak dapat masuk menggunakan akun User pada Aplikasi Client, silahkan masuk ke Akun User pada Halaman User melalui Aplikasi Android');
-                }
-                $cek_password = Hash::check($request->login_password, $data_login->login_password);
-                if ($data_login) {
-                    if ($cek_password) {
-                        $users = session(['data_login' => $data_login]);
-                        return redirect()->route('client')->with('status', 'Berhasil Login!');
-                    }
-                }
-                break;
-            case 'pembina':
-                if ($cek_request == "admin") {
-                    return redirect()->route('login-admin')->with('status', 'Maaf anda tidak dapat masuk menggunakan akun User pada Aplikasi Client, silahkan masuk ke Akun User pada Halaman User melalui Aplikasi Android');
+                    return redirect()->route('login')->with('status', 'Maaf anda tidak dapat masuk menggunakan akun User pada Aplikasi Client, silahkan masuk ke Akun User pada Halaman User melalui Aplikasi Android');
                 }
                 $cek_password = Hash::check($request->login_password, $data_login->login_password);
                 if ($data_login) {
