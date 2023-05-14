@@ -17,5 +17,8 @@ use App\Models\Penawaran;
 
 class LabController extends Controller
 {
-    //
+    public function daftar_invoice()
+    {
+        return view('invoice.daftar-invoice');
+    }
 }

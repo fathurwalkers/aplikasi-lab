@@ -17,5 +17,8 @@ use App\Models\Penawaran;
 
 class PenawaranController extends Controller
 {
-    //
+    public function daftar_penawaran()
+    {
+        return view('penawaran.daftar-penawaran');
+    }
 }
