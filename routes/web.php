@@ -26,4 +26,8 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
         Route::get('/', [BackController::class, 'daftar_penawaran'])->name('daftar-penawaran');
     });
 
+    Route::group(["prefix" => "invoice"], function () {
+        Route::get('/', [BackController::class, 'daftar_invoice'])->name('daftar-invoice');
+    });
+
 });
