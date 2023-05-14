@@ -10,6 +10,10 @@ use Faker\Factory as Faker;
 use Illuminate\Support\Arr;
 use App\Models\Login;
 use App\Models\Data;
+use App\Models\Barang;
+use App\Models\Invoice;
+use App\Models\Lab;
+use App\Models\Penawaran;
 
 class BackController extends Controller
 {
