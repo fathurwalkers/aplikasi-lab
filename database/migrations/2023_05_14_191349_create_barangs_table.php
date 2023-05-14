@@ -6,26 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('barangs', function (Blueprint $table) {
+        Schema::create('barang', function (Blueprint $table) {
             $table->id();
+
+            $table->string('barang_nama')->nullable();
+            $table->string('barang_kondisi')->nullable(); // BAIK - RUSAK
+            $table->string('barang_kode')->nullable();
+            $table->integer('barang_stok')->nullable();
+            $table->integer('barang_nilai')->nullable();
+
+            $table->unsignedBigInteger('lab_id')->nullable()->default(null);
+            $table->foreign('lab_id')->references('id')->on('lab')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('barangs');
+        Schema::dropIfExists('barang');
     }
 };
