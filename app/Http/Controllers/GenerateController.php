@@ -124,4 +124,36 @@ class GenerateController extends Controller
         $save_data->login()->associate($login_data->id);
         $save_data->save();
     }
+
+    // --------------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------------
+
+    public function generate_lab()
+    {
+        $faker = Faker::create('id_ID');
+        $login = Login::all()->toArray();
+        $number = [6, 7, 8, 9];
+        for ($i=0; $i < 20; $i++) {
+            $lab = new Lab;
+            $random_number = Arr::random($number);
+            $lab_nilai = $faker->randomNumber($random_number);
+            $login_take = Arr::random($login);
+            $login_id = $login_take["id"];
+            $lab_nama = "Lab " . $faker->words(4, true);
+            $lab_kode = "LAB" . strtoupper(Str::random(10));
+            $lab_penanggung_jawab = $login_take["login_nama"];
+
+            $save_lab = $lab->create([
+                "lab_nama" => $lab_nama,
+                "lab_kode" => $lab_kode,
+                "lab_penanggung_jawab" => $lab_penanggung_jawab,
+                "lab_nilai" => intval($lab_nilai),
+                "login_id" => intval($login_id),
+                "created_at" => now(),
+                "updated_at" => now()
+            ]);
+            $save_lab->save();
+        }
+    }
 }
