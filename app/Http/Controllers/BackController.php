@@ -23,7 +23,6 @@ class BackController extends Controller
     public function index()
     {
         $users = session('data_login');
-        dd($users);
         if($users->login_level == "user"){
             return redirect()->route('client-index')->with('status', 'Maaf anda tidak punya akses ke halaman ini.');
         }

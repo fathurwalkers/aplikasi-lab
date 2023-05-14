@@ -20,7 +20,7 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap1"
                 aria-expanded="true" aria-controls="collapseBootstrap1">
                 <i class="far fa-fw fa-window-maximize"></i>
-                <span>Master Data</span>
+                <span>Data</span>
             </a>
             <div id="collapseBootstrap1" class="collapse" aria-labelledby="headingBootstrap"
                 data-parent="#accordionSidebar">
@@ -35,20 +35,19 @@
         <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-palette"></i>
-                <span>Bank Soal</span>
+                <span>Peminjaman Lab</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
                 aria-expanded="true" aria-controls="collapseForm">
                 <i class="fab fa-fw fa-wpforms"></i>
-                <span>Uji Kompetensi</span>
+                <span>Settings</span>
             </a>
             <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Manajemen UKOM</h6>
-                    <a class="collapse-item" href="#">Uji Kompetensi</a>
-                    <a class="collapse-item" href="#">Hasil Ujian</a>
+                    <h6 class="collapse-header">Manajemen Level akses</h6>
+                    <a class="collapse-item" href="#">Pengaturan Aplikasi</a>
                 </div>
             </div>
         </li>
@@ -75,7 +74,7 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable3"
                 aria-expanded="true" aria-controls="collapseTable3">
                 <i class="fas fa-fw fa-table"></i>
-                <span>User Management</span>
+                <span>Kelola User</span>
             </a>
             <div id="collapseTable3" class="collapse" aria-labelledby="headingTable"
                 data-parent="#accordionSidebar">
