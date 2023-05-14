@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Data;
+use App\Models\Lab;
 
 class Login extends Model
 {
@@ -16,6 +17,11 @@ class Login extends Model
     public function data()
     {
         return $this->hasMany(Data::class);
+    }
+
+    public function lab()
+    {
+        return $this->hasMany(Lab::class);
     }
 
 }

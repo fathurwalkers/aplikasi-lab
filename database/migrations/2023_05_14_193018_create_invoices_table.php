@@ -6,26 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('invoice', function (Blueprint $table) {
             $table->id();
+
+            $table->string('invoice_kode')->nullable();
+            $table->string('invoice_status')->nullable(); // BELUM LUNAS - LUNAS
+            $table->tinyText('invoice_id_barang')->nullable();
+
+            $table->unsignedBigInteger('penawaran_id')->nullable()->default(null);
+            $table->foreign('penawaran_id')->references('id')->on('penawaran')->onDelete('cascade');
+
+            $table->unsignedBigInteger('data_id')->nullable()->default(null);
+            $table->foreign('data_id')->references('id')->on('data')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('invoice');
     }
 };
