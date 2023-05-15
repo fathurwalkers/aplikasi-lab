@@ -37,4 +37,5 @@ Route::group(["prefix" => "generate"], function () {
     Route::get('/pengguna', [GenerateController::class, 'generate_pengguna'])->name('generate-pengguna');
     Route::get('/default-pengguna', [GenerateController::class, 'generate_default_pengguna'])->name('generate-default-pengguna');
     Route::get('/lab', [GenerateController::class, 'generate_lab'])->name('generate-lab');
+    Route::get('/barang', [GenerateController::class, 'generate_barang'])->name('generate-barang');
 });
