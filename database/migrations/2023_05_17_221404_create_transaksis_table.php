@@ -15,9 +15,14 @@ return new class extends Migration
             $table->string('transaksi_kode')->nullable();
             $table->string('transaksi_status')->nullable(); // PROSES - SELESAI
             $table->integer('transaksi_harga_total')->nullable();
+            $table->text('transaksi_bukti')->nullable();
+            $table->text('transaksi_kwitansi')->nullable();
 
             $table->unsignedBigInteger('invoice_id')->nullable()->default(null);
             $table->foreign('invoice_id')->references('id')->on('invoice')->onDelete('cascade');
+
+            $table->unsignedBigInteger('data_id')->nullable()->default(null);
+            $table->foreign('data_id')->references('id')->on('data')->onDelete('cascade');
 
             $table->timestamps();
         });
