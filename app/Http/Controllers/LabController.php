@@ -19,6 +19,19 @@ class LabController extends Controller
 {
     public function daftar_lab()
     {
-        return view('lab.daftar-lab');
+        $session_users = session('data_login');
+        $users = Login::findOrFail($session_users->id);
+        $lab = Lab::all();
+        return view('lab.daftar-lab', [
+            'lab' => $lab,
+            'users' => $users
+        ]);
+    }
+
+    public function hapus_lab(Request $request, $id)
+    {
+        $lab_id = $id;
+        $lab = Lab::find($lab_id);
+        dd($lab);
     }
 }

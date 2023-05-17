@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\BackController;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\GenerateController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\LabController;
+use App\Http\Controllers\PenawaranController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,20 +20,20 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
     Route::get('/', [BackController::class, 'index'])->name('dashboard');
 
     Route::group(["prefix" => "lab"], function () {
-        Route::get('/', [BackController::class, 'daftar_lab'])->name('daftar-lab');
-        Route::post('/hapus', [BackController::class, 'hapus_lab'])->name('hapus-lab');
+        Route::get('/', [LabController::class, 'daftar_lab'])->name('daftar-lab');
+        Route::post('/hapus/{id}', [LabController::class, 'hapus_lab'])->name('hapus-lab');
     });
 
     Route::group(["prefix" => "barang"], function () {
-        Route::get('/', [BackController::class, 'daftar_barang'])->name('daftar-barang');
+        Route::get('/', [BarangController::class, 'daftar_barang'])->name('daftar-barang');
     });
 
     Route::group(["prefix" => "penawaran"], function () {
-        Route::get('/', [BackController::class, 'daftar_penawaran'])->name('daftar-penawaran');
+        Route::get('/', [PenawaranController::class, 'daftar_penawaran'])->name('daftar-penawaran');
     });
 
     Route::group(["prefix" => "invoice"], function () {
-        Route::get('/', [BackController::class, 'daftar_invoice'])->name('daftar-invoice');
+        Route::get('/', [InvoiceController::class, 'daftar_invoice'])->name('daftar-invoice');
     });
 
 });

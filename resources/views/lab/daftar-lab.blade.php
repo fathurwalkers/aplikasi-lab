@@ -1,7 +1,7 @@
 @extends('layouts.dashboard-layouts')
 @section('title', 'Ujian Kepolisian')
-@section('content-prefix', 'Daftar Akun')
-@section('content-header', 'Dashboard - Daftar Akun')
+@section('content-prefix', 'Daftar Lab')
+@section('content-header', 'Dashboard - Daftar Lab')
 
 @push('css')
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables') }}/datatables.min.css"> --}}
@@ -16,7 +16,7 @@
                 <div class="row">
                     <h4>
                         <b>
-                            Daftar Akun
+                            Daftar Lab
                         </b>
                     </h4>
                 </div>
@@ -37,22 +37,21 @@
                             </thead>
                             <tbody>
 
-                                @foreach ($akun as $data)
+                                @foreach ($akun as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $data->data_nama }}</td>
-                                    <td>{{ $data->login->login_username }}</td>
-                                    <td>{{ $data->login->login_level }}</td>
-                                    <td>{{ $data->login->login_email }}</td>
-                                    <td>{{ $data->data_telepon }}</td>
+                                    <td>{{ $item->lab_nama }}</td>
+                                    <td>{{ $item->lab_kode }}</td>
+                                    <td>{{ $item->lab_penanggung_jawab }}</td>
+                                    <td>{{ $item->lab_nilai }}</td>
                                     <td class="mx-auto btn-group">
                                         <button type="button" class="btn btn-sm btn-success mr-1">Lihat</button>
                                         <button type="button" class="btn btn-sm btn-info mr-1">Ubah</button>
                                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#modal_hapus{{ $data->id }}">Hapus</button>
+                                        data-target="#modal_hapus{{ $item->id }}">Hapus</button>
 
                                         <!-- Modal Hapus -->
-                                        <div class="modal fade" id="modal_hapus{{ $data->id }}" tabindex="-1" role="dialog"
+                                        <div class="modal fade" id="modal_hapus{{ $item->id }}" tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -72,7 +71,7 @@
                                                     <div class="modal-footer">
                                                         <form action="{{ route('hapus-lab') }}" method="POST">
                                                             @csrf
-                                                            <input type="hidden" name="hapus_id" value="{{ $data->id }}">
+                                                            <input type="hidden" name="hapus_id" value="{{ $item->id }}">
                                                             <button type="button" class="btn btn-outline-danger"
                                                             data-dismiss="modal">Batalkan</button>
                                                             <button type="submit" class="btn btn-primary">Hapus</button>
