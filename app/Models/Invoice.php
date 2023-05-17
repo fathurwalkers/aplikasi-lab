@@ -15,11 +15,6 @@ class Invoice extends Model
     protected $guarded = [];
     protected $primaryKey = "id";
 
-    public function data()
-    {
-        return $this->belongsTo(Data::class);
-    }
-
     public function penawaran()
     {
         return $this->belongsTo(Penawaran::class);

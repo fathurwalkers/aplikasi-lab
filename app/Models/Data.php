@@ -19,9 +19,4 @@ class Data extends Model
         return $this->belongsTo(Login::class);
     }
 
-    public function invoice()
-    {
-        return $this->hasMany(Invoice::class);
-    }
-
 }
