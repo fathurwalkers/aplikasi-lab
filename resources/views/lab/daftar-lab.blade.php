@@ -27,17 +27,16 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No.</th>
-                                    <th>Nama</th>
-                                    <th>Username</th>
-                                    <th>Status</th>
-                                    <th>Email</th>
-                                    <th>No. HP / Telepon</th>
+                                    <th>Lab</th>
+                                    <th>Kode Lab</th>
+                                    <th>Penanggung Jawab</th>
+                                    <th>Nilai (Sewa)</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($akun as $item)
+                                @foreach ($lab as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->lab_nama }}</td>
@@ -69,7 +68,7 @@
                                                         </p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <form action="{{ route('hapus-lab') }}" method="POST">
+                                                        <form action="{{ route('hapus-lab', $item->id) }}" method="POST">
                                                             @csrf
                                                             <input type="hidden" name="hapus_id" value="{{ $item->id }}">
                                                             <button type="button" class="btn btn-outline-danger"

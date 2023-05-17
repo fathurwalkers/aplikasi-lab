@@ -32,6 +32,11 @@ class LabController extends Controller
     {
         $lab_id = $id;
         $lab = Lab::find($lab_id);
-        dd($lab);
+        $hapus_lab = $lab->forceDelete();
+        if ($hapus_lab == true) {
+            return redirect()->route('daftar-lab')->with('status', 'Berhasil menghapus Data Lab.');
+        } else {
+            return redirect()->route('daftar-lab')->with('status', 'Gagal menghapus Data Lab.');
+        }
     }
 }
