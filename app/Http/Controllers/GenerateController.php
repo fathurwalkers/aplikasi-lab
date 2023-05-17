@@ -160,7 +160,7 @@ class GenerateController extends Controller
     public function generate_barang()
     {
         $faker = Faker::create('id_ID');
-        $lab = Lab::all()->toArray();
+        // $lab = Lab::all()->toArray();
         $number = [6, 7, 8, 9];
         $number2 = [1,2,3,4,5,6,7,8,9,10];
         $array_kondisi = ["BAIK", "RUSAK"];
@@ -169,8 +169,8 @@ class GenerateController extends Controller
             $barang = new Barang;
             $random_number = Arr::random($number);
             $barang_nilai = $faker->randomNumber($random_number);
-            $lab_take = Arr::random($lab);
-            $lab_id = $lab_take["id"];
+            // $lab_take = Arr::random($lab);
+            // $lab_id = $lab_take["id"];
             $barang_nama = "Barang " . $faker->words(4, true);
             $barang_kode = "BARANG" . strtoupper(Str::random(10));
             $barang_kondisi = Arr::random($array_kondisi);
@@ -182,7 +182,7 @@ class GenerateController extends Controller
                 "barang_kode" => $barang_kode,
                 "barang_stok" => intval($barang_stok),
                 "barang_nilai" => intval($barang_nilai),
-                "lab_id" => intval($lab_id),
+                // "lab_id" => intval($lab_id),
                 "created_at" => now(),
                 "updated_at" => now()
             ]);

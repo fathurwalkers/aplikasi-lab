@@ -4,7 +4,7 @@
             <div class="sidebar-brand-icon">
                 <img src="{{ asset('assets/ruangadmin') }}/img/logo/logo2.png">
             </div>
-            <div class="sidebar-brand-text mx-3">PEMINJAMAN LAB</div>
+            <div class="sidebar-brand-text mx-3">RUANGLAB</div>
         </a>
         <hr class="sidebar-divider my-0">
         <li class="nav-item">
@@ -26,8 +26,7 @@
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Manajemen Data</h6>
-                    <a class="collapse-item" href="{{ route('daftar-lab') }}">Data Lab</a>
-                    <a class="collapse-item" href="#">Data Barang</a>
+                    <a class="collapse-item" href="{{ route('daftar-barang') }}">Data Barang</a>
                     <a class="collapse-item" href="#">Data Pengguna</a>
                     <a class="collapse-item" href="#">Data Laporan</a>
                 </div>
