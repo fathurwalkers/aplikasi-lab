@@ -165,7 +165,7 @@ class GenerateController extends Controller
         $number2 = [1,2,3,4,5,6,7,8,9,10];
         $array_kondisi = ["BAIK", "RUSAK"];
 
-        for ($i=0; $i < 5; $i++) {
+        for ($i=0; $i < 20; $i++) {
             $barang = new Barang;
             $random_number = Arr::random($number);
             $barang_nilai = $faker->randomNumber($random_number);

@@ -35,7 +35,7 @@
         <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-palette"></i>
-                <span>Peminjaman Lab</span>
+                <span>Pengadaan & Peminjaman</span>
             </a>
         </li>
         <li class="nav-item">
