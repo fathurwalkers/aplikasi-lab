@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Total Pengguna</div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Lab</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">54</div>
                             {{-- <div class="mt-2 mb-0 text-muted text-xs">
                                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Total Ujian</div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Barang</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">38</div>
                             {{-- <div class="mt-2 mb-0 text-muted text-xs">
                                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
@@ -53,7 +53,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Total Soal</div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Pengguna (Users)</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">451</div>
                             {{-- <div class="mt-2 mb-0 text-muted text-xs">
                                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
@@ -72,7 +72,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Total Jadwal Ujian</div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Laporan</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">28</div>
                             {{-- <div class="mt-2 mb-0 text-muted text-xs">
                                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
