@@ -18,9 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('barang_id')->nullable()->default(null);
             $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
 
-            $table->unsignedBigInteger('lab_id')->nullable()->default(null);
-            $table->foreign('lab_id')->references('id')->on('lab')->onDelete('cascade');
-
             $table->timestamps();
         });
     }

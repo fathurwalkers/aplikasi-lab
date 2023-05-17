@@ -17,9 +17,6 @@ return new class extends Migration
             $table->integer('barang_stok')->nullable();
             $table->integer('barang_nilai')->nullable();
 
-            $table->unsignedBigInteger('lab_id')->nullable()->default(null);
-            $table->foreign('lab_id')->references('id')->on('lab')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
