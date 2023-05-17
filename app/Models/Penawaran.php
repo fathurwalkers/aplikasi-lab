@@ -24,8 +24,4 @@ class Penawaran extends Model
         return $this->belongsTo(Barang::class);
     }
 
-    public function lab()
-    {
-        return $this->belongsTo(Lab::class);
-    }
 }

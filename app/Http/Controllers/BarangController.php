@@ -19,6 +19,24 @@ class BarangController extends Controller
 {
     public function daftar_barang()
     {
-        return view('barang.daftar-barang');
+        $session_users = session('data_login');
+        $users = Login::findOrFail($session_users->id);
+        $barang = Barang::all();
+        return view('barang.daftar-barang', [
+            'barang' => $barang,
+            'users' => $users
+        ]);
+    }
+
+    public function hapus_barang(Request $request, $id)
+    {
+        $barang_id = $id;
+        $barang = Barang::find($barang_id);
+        $hapus_barang = $barang->forceDelete();
+        if ($hapus_barang == true) {
+            return redirect()->route('daftar-barang')->with('status', 'Berhasil menghapus Data barang.');
+        } else {
+            return redirect()->route('daftar-barang')->with('status', 'Gagal menghapus Data barang.');
+        }
     }
 }

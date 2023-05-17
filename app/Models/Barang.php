@@ -18,9 +18,4 @@ class Barang extends Model
     {
         return $this->hasMany(Penawaran::class);
     }
-
-    public function lab()
-    {
-        return $this->belongsTo(Lab::class);
-    }
 }

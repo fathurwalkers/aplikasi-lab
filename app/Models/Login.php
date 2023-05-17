@@ -18,10 +18,4 @@ class Login extends Model
     {
         return $this->hasMany(Data::class);
     }
-
-    public function lab()
-    {
-        return $this->hasMany(Lab::class);
-    }
-
 }
