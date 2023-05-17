@@ -17,6 +17,7 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
 
     Route::group(["prefix" => "lab"], function () {
         Route::get('/', [BackController::class, 'daftar_lab'])->name('daftar-lab');
+        Route::post('/hapus', [BackController::class, 'hapus_lab'])->name('hapus-lab');
     });
 
     Route::group(["prefix" => "barang"], function () {

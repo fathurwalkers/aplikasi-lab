@@ -26,8 +26,9 @@
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Manajemen Data</h6>
-                    <a class="collapse-item" href="#">Data Pengguna</a>
                     <a class="collapse-item" href="#">Data Lab</a>
+                    <a class="collapse-item" href="#">Data Barang</a>
+                    <a class="collapse-item" href="#">Data Pengguna</a>
                     <a class="collapse-item" href="#">Data Laporan</a>
                 </div>
             </div>
