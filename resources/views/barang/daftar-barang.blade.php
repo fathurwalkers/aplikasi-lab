@@ -14,12 +14,52 @@
         <div class="card-body">
             <div class="container">
                 <div class="row">
-                    <h4>
-                        <b>
-                            Daftar Barang
-                        </b>
-                    </h4>
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <h4>
+                            <b>
+                                Daftar Barang
+                            </b>
+                        </h4>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
+                            <button type="button" class="btn btn-sm btn-info d-flex justify-content-end" data-toggle="modal"
+                            data-target="#modal_tambah">Tambah Barang</button>
+                    </div>
+
+                    <!-- Modal Tambah -->
+                    <div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabelLogout">Peringatan Aksi!</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Apakah anda yakin ingin menghapus item ini?
+                                        <br>
+                                        Nama Barang : <b>dddd</b>
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="#" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="hapus_id" value="s">
+                                        <button type="button" class="btn btn-outline-danger"
+                                        data-dismiss="modal">Batalkan</button>
+                                        <button type="submit" class="btn btn-primary">Hapus</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Modal Tambah -->
                 </div>
+
                 <hr />
                 <div class="row">
                     <div class="table-responsive">
