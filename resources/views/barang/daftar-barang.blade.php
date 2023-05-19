@@ -39,21 +39,37 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
-                                    <p>Apakah anda yakin ingin menghapus item ini?
-                                        <br>
-                                        Nama Barang : <b>dddd</b>
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <form action="#" method="POST">
+
+                                <form action="#" method="POST">
+                                    <div class="modal-body">
+
+                                        <div class="container">
+
+                                            <div class="form-row">
+                                                {{-- <div class="col-sm-6 col-md-6 col-lg-6"> --}}
+                                                    <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                                                        <label for="barang_nama">Nama Barang </label>
+                                                        <input type="text" class="form-control" id="barang_nama" placeholder="Contoh : Djarum Coklat. ">
+                                                    </div>
+                                                    <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                                                        <label for="barang_nama">Nama Barang </label>
+                                                        <input type="text" class="form-control" id="barang_nama" placeholder="Contoh : Djarum Coklat. ">
+                                                    </div>
+                                                {{-- </div> --}}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
                                         @csrf
                                         <input type="hidden" name="hapus_id" value="s">
                                         <button type="button" class="btn btn-outline-danger"
                                         data-dismiss="modal">Batalkan</button>
                                         <button type="submit" class="btn btn-primary">Hapus</button>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>
