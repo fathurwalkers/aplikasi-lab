@@ -53,7 +53,12 @@
                                                     </div>
                                                     <div class="form-group col-sm-6 col-md-6 col-lg-6">
                                                         <label for="barang_nama">Nama Barang </label>
-                                                        <input type="text" class="form-control" id="barang_nama" placeholder="Contoh : Djarum Coklat. ">
+                                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                                            <option selected>Choose...</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
                                                     </div>
                                                 {{-- </div> --}}
                                             </div>
