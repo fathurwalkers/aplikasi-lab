@@ -8,15 +8,11 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('transaksi', function (Blueprint $table) {
+        Schema::create('penawaran_invoice', function (Blueprint $table) {
             $table->id();
 
-            $table->string('transaksi_pemilik')->nullable();
-            $table->string('transaksi_kode')->nullable();
-            $table->string('transaksi_status')->nullable(); // PROSES - SELESAI
-            $table->integer('transaksi_harga_total')->nullable();
-            $table->text('transaksi_bukti')->nullable();
-            $table->text('transaksi_kwitansi')->nullable();
+            $table->unsignedBigInteger('penawaran_id')->nullable()->default(null);
+            $table->foreign('penawaran_id')->references('id')->on('penawaran')->onDelete('cascade');
 
             $table->unsignedBigInteger('invoice_id')->nullable()->default(null);
             $table->foreign('invoice_id')->references('id')->on('invoice')->onDelete('cascade');
@@ -27,6 +23,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('transaksi');
+        Schema::dropIfExists('penawaran_invoice');
     }
 };

@@ -18,9 +18,4 @@ class Transaksi extends Model
     {
         return $this->belongsTo(Invoice::class);
     }
-
-    public function data()
-    {
-        return $this->belongsTo(Data::class);
-    }
 }

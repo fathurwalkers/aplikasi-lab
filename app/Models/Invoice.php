@@ -17,11 +17,16 @@ class Invoice extends Model
 
     public function penawaran()
     {
-        return $this->belongsTo(Penawaran::class);
+        return $this->belongsToMany(Penawaran::class);
     }
 
     public function transaksi()
     {
         return $this->hasMany(Transaksi::class);
+    }
+
+    public function data()
+    {
+        return $this->belongsTo(Data::class);
     }
 }

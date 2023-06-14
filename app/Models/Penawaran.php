@@ -16,7 +16,7 @@ class Penawaran extends Model
 
     public function invoice()
     {
-        return $this->hasMany(Invoice::class);
+        return $this->belongsToMany(Invoice::class);
     }
 
     public function barang()
