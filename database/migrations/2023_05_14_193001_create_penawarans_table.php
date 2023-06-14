@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('penawaran_kode')->nullable();
+            $table->string('penawaran_deskripsi')->nullable();
             $table->string('penawaran_status')->nullable(); // PROSES - BERLANGSUNG - SELESAI
             $table->integer('penawaran_harga_total')->nullable();
 

@@ -13,7 +13,6 @@ return new class extends Migration
 
             $table->string('invoice_kode')->nullable();
             $table->string('invoice_status')->nullable(); // BELUM LUNAS - LUNAS
-            $table->tinyText('invoice_id_barang')->nullable();
 
             $table->unsignedBigInteger('penawaran_id')->nullable()->default(null);
             $table->foreign('penawaran_id')->references('id')->on('penawaran')->onDelete('cascade');
