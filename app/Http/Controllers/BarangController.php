@@ -17,6 +17,13 @@ use App\Models\Penawaran;
 
 class BarangController extends Controller
 {
+    protected $users;
+
+    public function __construct()
+    {
+        $this->users = session('data_login');
+    }
+
     public function daftar_barang()
     {
         $session_users = session('data_login');

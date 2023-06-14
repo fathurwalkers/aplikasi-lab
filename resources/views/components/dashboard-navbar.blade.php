@@ -28,7 +28,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Manajemen Data</h6>
                     <a class="collapse-item" href="{{ route('daftar-barang') }}">Data Barang</a>
-                    <a class="collapse-item" href="#">Laporan Penawaran</a>
+                    <a class="collapse-item" href="{{ route('daftar-penawaran') }}">Laporan Penawaran</a>
                     <a class="collapse-item" href="#">Laporan Invoice</a>
                 </div>
             </div>

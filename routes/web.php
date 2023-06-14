@@ -33,6 +33,7 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
         Route::get('/', [PenawaranController::class, 'daftar_penawaran'])->name('daftar-penawaran');
         Route::get('/buat-penawaran', [PenawaranController::class, 'buat_penawaran'])->name('buat-penawaran');
         Route::post('/proses-penawaran', [PenawaranController::class, 'proses_penawaran'])->name('proses-penawaran');
+        Route::post('/hapus/{id}', [PenawaranController::class, 'hapus_penawaran'])->name('hapus-penawaran');
     });
 
     Route::group(["prefix" => "invoice"], function () {
