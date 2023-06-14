@@ -38,6 +38,8 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
 
     Route::group(["prefix" => "invoice"], function () {
         Route::get('/', [InvoiceController::class, 'daftar_invoice'])->name('daftar-invoice');
+        Route::post('/pembuatan-invoice', [InvoiceController::class, 'pembuatan_invoice'])->name('pembuatan-invoice');
+        Route::post('/cetak-invoice', [InvoiceController::class, 'cetak_invoice'])->name('cetak-invoice');
     });
 
 });

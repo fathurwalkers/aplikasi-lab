@@ -22,64 +22,20 @@
                         </h4>
                     </div>
 
-                    {{-- <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
-                        <button type="button" class="btn btn-sm btn-info d-flex justify-content-end" data-toggle="modal"
-                            data-target="#modal_tambah">Tambah Barang</button>
-                    </div> --}}
-
-                    <!-- Modal Tambah -->
-                    <div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabelLogout">Peringatan Aksi!</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <form action="#" method="POST">
-                                    <div class="modal-body">
-
-                                        <div class="container">
-
-                                            <div class="form-row">
-                                                {{-- <div class="col-sm-6 col-md-6 col-lg-6"> --}}
-                                                <div class="form-group col-sm-6 col-md-6 col-lg-6">
-                                                    <label for="barang_nama">Nama Barang </label>
-                                                    <input type="text" class="form-control" id="barang_nama"
-                                                        placeholder="Contoh : Djarum Coklat. ">
-                                                </div>
-                                                <div class="form-group col-sm-6 col-md-6 col-lg-6">
-                                                    <label for="barang_nama">Nama Barang </label>
-                                                    <select class="custom-select my-1 mr-sm-2"
-                                                        id="inlineFormCustomSelectPref">
-                                                        <option selected>Choose...</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
-                                                    </select>
-                                                </div>
-                                                {{-- </div> --}}
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        @csrf
-                                        <input type="hidden" name="hapus_id" value="s">
-                                        <button type="button" class="btn btn-outline-danger"
-                                            data-dismiss="modal">Batalkan</button>
-                                        <button type="submit" class="btn btn-primary">Hapus</button>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
+                        <button type="button" class="badge badge-lg badge-primary mr-1">
+                            <b>Total Pilihan :
+                                <span id="counterbadges">0</span>
+                            </b>
+                        </button>
+                        <form action="{{ route('pembuatan-invoice') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="hide_penawaran" id="hide_penawaran">
+                            <button type="submit" class="btn btn-md btn-primary">
+                                Proses
+                            </button>
+                        </form>
                     </div>
-                    <!-- END Modal Tambah -->
                 </div>
 
                 <hr />
@@ -112,6 +68,8 @@
                                             {{-- <button type="button" class="btn btn-sm btn-info mr-1">Ubah</button> --}}
                                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
                                                 data-target="#modal_hapus{{ $item->id }}">Hapus</button>
+                                            <button type="button" class="btn btn-sm btn-info mr-1"
+                                                onclick="simpan_penawaran({{ $item->id }})">PILIH</button>
 
                                             <!-- Modal Hapus -->
                                             <div class="modal fade" id="modal_hapus{{ $item->id }}" tabindex="-1"
@@ -173,27 +131,25 @@
         function counterUp() {
             count_items++;
             counterbadges.innerHTML = count_items;
+            $('#hide_penawaran').val(array_penawaran);
         }
 
-        function simpan_barang(id_penawaran) {
-            console.log("fungsi simpan barang");
+        function simpan_penawaran(id_penawaran) {
+            console.log("fungsi simpan id penawaran");
             if (array_penawaran.length !== 0) {
-                check_array = array_penawaran.indexOf(id_barang);
+                check_array = array_penawaran.indexOf(id_penawaran);
                 if (check_array > -1) {
                     array_penawaran.splice(check_array, -1);
                 } else {
                     counterUp();
-                    harga_total += parseInt(harga_barang);
-                    array_penawaran.push(id_barang)
+                    array_penawaran.push(id_penawaran)
                 }
             } else {
                 counterUp();
-                harga_total += parseInt(harga_barang);
-                array_penawaran.push(id_barang)
+                array_penawaran.push(id_penawaran)
             }
-            $('#hide_barang').val(array_penawaran);
-            $('#hide_harga').val(harga_total);
-            $('#badgeshargatotal').html(harga_total);
+            console.log(array_penawaran);
+            $('#hide_penawaran').val(array_penawaran);
         }
 
         $(document).ready(function() {
