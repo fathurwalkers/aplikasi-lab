@@ -27,9 +27,6 @@ class BackController extends Controller
     public function index()
     {
         $users = session('data_login');
-        if($users->login_level == "user"){
-            return redirect()->route('client-index')->with('status', 'Maaf anda tidak punya akses ke halaman ini.');
-        }
         return view('dashboard.index');
     }
 
@@ -74,9 +71,6 @@ class BackController extends Controller
         $data_login = Login::where('login_username', $request->login_username)->firstOrFail();
         switch ($data_login->login_level) {
             case 'admin':
-                if ($cek_request == "user") {
-                    return redirect()->route('login')->with('status', 'Maaf anda tidak dapat masuk menggunakan akun Administrator pada Aplikasi Client, silahkan masuk ke Akun Administrator pada Halaman Administrator melalui Website');
-                }
                 $cek_password = Hash::check($request->login_password, $data_login->login_password);
                 if ($data_login) {
                     if ($cek_password) {
@@ -86,14 +80,11 @@ class BackController extends Controller
                 }
                 break;
             case 'user':
-                if ($cek_request == "admin") {
-                    return redirect()->route('login')->with('status', 'Maaf anda tidak dapat masuk menggunakan akun User pada Aplikasi Client, silahkan masuk ke Akun User pada Halaman User melalui Aplikasi Android');
-                }
                 $cek_password = Hash::check($request->login_password, $data_login->login_password);
                 if ($data_login) {
                     if ($cek_password) {
                         $users = session(['data_login' => $data_login]);
-                        return redirect()->route('client')->with('status', 'Berhasil Login!');
+                        return redirect()->route('dashboard')->with('status', 'Berhasil Login!');
                     }
                 }
                 break;

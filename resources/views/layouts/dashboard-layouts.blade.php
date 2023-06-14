@@ -9,8 +9,10 @@
     <meta name="author" content="">
     <link href="{{ asset('assets/ruangadmin') }}/img/logo/logo.png" rel="icon">
     <title>@yield('title') - @yield('content-header')</title>
-    <link href="{{ asset('assets/ruangadmin') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/ruangadmin') }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/ruangadmin') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+        type="text/css">
+    <link href="{{ asset('assets/ruangadmin') }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css">
     <link href="{{ asset('assets/ruangadmin') }}/css/ruang-admin.min.css" rel="stylesheet">
     @stack('css')
 </head>
@@ -28,10 +30,10 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <ul class="navbar-nav ml-auto">
-                        <x-dashboard-search-panel />
-                        <x-dashboard-notifikasi />
+                        {{-- <x-dashboard-search-panel /> --}}
+                        {{-- <x-dashboard-notifikasi /> --}}
                         <x-dashboard-pesan />
-                        <x-dashboard-task-center />
+                        {{-- <x-dashboard-task-center /> --}}
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <x-dashboard-user-panel />
                     </ul>
@@ -43,23 +45,22 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-1">
                         <h1 class="h3 mb-0 text-gray-800">@yield('content-header')</h1>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a
-                                    href="{{ route('dashboard') }}">@yield('content-prefix')</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">@yield('content-prefix')</a></li>
                             <li class="breadcrumb-item active" aria-current="page">@yield('content-header')</li>
                         </ol>
                     </div>
 
                     {{-- <div class="card mb-3"> --}}
-                        {{-- <div class="card-body"> --}}
-                            {{-- <div class="container"> --}}
-                                @if (session('status'))
-                                    <div class="alert alert-info">
-                                        {{ session('status') }}
-                                    </div>
-                                @endif
-                                @yield('main-content')
-                            {{-- </div> --}}
-                        {{-- </div> --}}
+                    {{-- <div class="card-body"> --}}
+                    {{-- <div class="container"> --}}
+                    @if (session('status'))
+                        <div class="alert alert-info">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    @yield('main-content')
+                    {{-- </div> --}}
+                    {{-- </div> --}}
                     {{-- </div> --}}
 
                     <!-- Modal Logout -->
@@ -69,8 +70,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
-                                    <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -82,7 +82,7 @@
                                         @csrf
                                         <input type="hidden" name="logoutrequest" value="ADMIN">
                                         <button type="button" class="btn btn-outline-primary"
-                                        data-dismiss="modal">Cancel</button>
+                                            data-dismiss="modal">Cancel</button>
                                         <button type="submit" class="btn btn-primary">Logout</button>
                                     </form>
                                 </div>

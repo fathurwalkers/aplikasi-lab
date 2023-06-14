@@ -14,6 +14,14 @@
         <div class="card-body">
             <div class="container">
 
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <p>Silahkan melakukan penawaran dengan memilih satu atau lebih dari barang yang tersedia pada tabel
+                            dibawah. Jangan lupa mengisi deskripsi penawaran dan Tekan tombol "Proses Penawaran" jika ingin
+                            menyelesaikan penawaran untuk melanjutkan ke proses pembuatan invoice.</p>
+                    </div>
+                </div>
+
                 <form action="{{ route('proses-penawaran') }}" method="POST">
                     @csrf
                     <input type="hidden" id="hide_barang" name="hide_barang">
@@ -81,10 +89,18 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->barang_nama }}</td>
-                                        <td>{{ $item->barang_kondisi }}</td>
+                                        @switch($item->barang_kondisi)
+                                            @case('BAIK')
+                                                <td><span style="color:green;">{{ $item->barang_kondisi }}</span></td>
+                                            @break
+
+                                            @case('RUSAK')
+                                                <td><span style="color:red;">{{ $item->barang_kondisi }}</span></td>
+                                            @break
+                                        @endswitch
                                         <td>{{ $item->barang_kode }}</td>
-                                        <td>{{ $item->barang_stok }}</td>
-                                        <td>{{ $item->barang_nilai }}</td>
+                                        <td class="text-center">{{ $item->barang_stok }}</td>
+                                        <td class="text-center">{{ $item->barang_nilai }}</td>
                                         <td class="mx-auto btn-group">
                                             <button type="button" class="btn btn-sm btn-info"
                                                 onclick="simpan_barang({{ $item->id }},{{ $item->barang_nilai }})">PILIH</button>
@@ -157,24 +173,5 @@
         $(document).ready(function() {
             $('#example').DataTable();
         });
-
-        // $('#button_proses').on("click", function() {
-        //     // console.log(valuekategori)
-        //     let token = $('input[name="_token"]').val();
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: '{{ route('proses-penawaran') }}',
-        //         data: {
-        //             '_token': token,
-        //             'array_barang': array_barang,
-        //             'harga_total': harga_total,
-        //         },
-        //         success: function(data) {
-        //             console.log(hasil_proses_array);
-        //             console.log(hasil_proses_harga);
-        //             console.log('success');
-        //         }
-        //     });
-        // });
     </script>
 @endpush
