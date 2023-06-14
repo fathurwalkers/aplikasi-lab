@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('penawaran_status')->nullable(); // PROSES - BERLANGSUNG - SELESAI
             $table->integer('penawaran_harga_total')->nullable();
 
+            $table->unsignedBigInteger('data_id')->nullable()->default(null);
+            $table->foreign('data_id')->references('id')->on('data')->onDelete('cascade');
+
             $table->unsignedBigInteger('barang_id')->nullable()->default(null);
             $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
 

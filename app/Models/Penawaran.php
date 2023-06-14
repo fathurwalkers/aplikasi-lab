@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Barang;
-use App\Models\Lab;
+use App\Models\Data;
 
 class Penawaran extends Model
 {
@@ -22,6 +22,11 @@ class Penawaran extends Model
     public function barang()
     {
         return $this->belongsTo(Barang::class);
+    }
+
+    public function data()
+    {
+        return $this->belongsTo(Data::class);
     }
 
 }

@@ -28,12 +28,20 @@ class PenawaranController extends Controller
 
     public function proses_penawaran(Request $request)
     {
-        $hide_barang = $request->hide_barang;
-        $hide_harga = $request->hide_harga;
-        $explode_barang = explode(",", $hide_barang);
-        dump($explode_barang);
-        dump($hide_barang);
-        dump($hide_harga);
+        $session_users = session('data_login');
+        $users = Login::find($session_users->id);
+        $data_users = Data::where('login_id', $users->id)->first();
+        $array_barang = $request->hide_barang;
+        $total_harga = $request->hide_harga;
+        $explode_barang = explode(",", $array_barang);
+
+        $barang = Barang::findMany($explode_barang);
+
+        dump($users);
+        dump($data_users);
+        dump($array_barang);
+        dump($barang);
+
         die();
     }
 
