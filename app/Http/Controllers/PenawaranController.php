@@ -14,9 +14,29 @@ use App\Models\Barang;
 use App\Models\Invoice;
 use App\Models\Lab;
 use App\Models\Penawaran;
+use Illuminate\Support\Facades\Redis;
 
 class PenawaranController extends Controller
 {
+    public function buat_penawaran()
+    {
+        $barang = Barang::all();
+        return view('penawaran.buat-penawaran', [
+            'barang' => $barang,
+        ]);
+    }
+
+    public function proses_penawaran(Request $request)
+    {
+        $hide_barang = $request->hide_barang;
+        $hide_harga = $request->hide_harga;
+        $explode_barang = explode(",", $hide_barang);
+        dump($explode_barang);
+        dump($hide_barang);
+        dump($hide_harga);
+        die();
+    }
+
     public function daftar_penawaran()
     {
         return view('penawaran.daftar-penawaran');

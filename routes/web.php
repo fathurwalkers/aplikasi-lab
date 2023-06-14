@@ -31,6 +31,8 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
 
     Route::group(["prefix" => "penawaran"], function () {
         Route::get('/', [PenawaranController::class, 'daftar_penawaran'])->name('daftar-penawaran');
+        Route::get('/buat-penawaran', [PenawaranController::class, 'buat_penawaran'])->name('buat-penawaran');
+        Route::post('/proses-penawaran', [PenawaranController::class, 'proses_penawaran'])->name('proses-penawaran');
     });
 
     Route::group(["prefix" => "invoice"], function () {

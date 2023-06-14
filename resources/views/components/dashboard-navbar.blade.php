@@ -33,7 +33,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('buat-penawaran') }}">
                 <i class="fas fa-fw fa-palette"></i>
                 <span>Pengadaan & Peminjaman</span>
             </a>
@@ -76,8 +76,7 @@
                 <i class="fas fa-fw fa-table"></i>
                 <span>Kelola User</span>
             </a>
-            <div id="collapseTable3" class="collapse" aria-labelledby="headingTable"
-                data-parent="#accordionSidebar">
+            <div id="collapseTable3" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User Management</h6>
                     {{-- <a class="collapse-item" href="simple-tables.html">Administrator</a> --}}

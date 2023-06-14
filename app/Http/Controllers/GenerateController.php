@@ -161,7 +161,7 @@ class GenerateController extends Controller
     {
         $faker = Faker::create('id_ID');
         // $lab = Lab::all()->toArray();
-        $number = [6, 7, 8, 9];
+        $number = [1,2,3];
         $number2 = [1,2,3,4,5,6,7,8,9,10];
         $array_kondisi = ["BAIK", "RUSAK"];
 
