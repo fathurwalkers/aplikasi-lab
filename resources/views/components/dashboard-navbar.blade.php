@@ -33,25 +33,14 @@
                 </div>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('buat-penawaran') }}">
-                <i class="fas fa-fw fa-palette"></i>
-                <span>Pengadaan & Peminjaman</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
-                aria-expanded="true" aria-controls="collapseForm">
-                <i class="fab fa-fw fa-wpforms"></i>
-                <span>Settings</span>
-            </a>
-            <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Manajemen Level akses</h6>
-                    <a class="collapse-item" href="#">Pengaturan Aplikasi</a>
-                </div>
-            </div>
-        </li>
+        @if ($users->login_level == 'user')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('buat-penawaran') }}">
+                    <i class="fas fa-fw fa-palette"></i>
+                    <span>Pengadaan & Peminjaman</span>
+                </a>
+            </li>
+        @endif
         {{-- <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable2"
                 aria-expanded="true" aria-controls="collapseTable2">

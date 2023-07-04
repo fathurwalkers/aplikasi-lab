@@ -30,6 +30,16 @@ class BackController extends Controller
         return view('dashboard.index');
     }
 
+    public function daftar_user()
+    {
+        $session_users = session('data_login');
+        $users = Login::find($session_users->id);
+        $login = Login::whereNotIn('id', [$users->id])->get();
+        return view('user.daftar-user', [
+            'login' => $login
+        ]);
+    }
+
     public function login()
     {
         $users = session('data_login');
