@@ -40,21 +40,6 @@
                 </a>
             </li>
         @endif
-        {{-- <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable2"
-                aria-expanded="true" aria-controls="collapseTable2">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Laporan</span>
-            </a>
-            <div id="collapseTable2" class="collapse" aria-labelledby="headingTable"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Kelola Laporan</h6>
-                    <a class="collapse-item" href="simple-tables.html">Jadwal Ujian</a>
-                    <a class="collapse-item" href="datatables.html">Hasil Ujian</a>
-                </div>
-            </div>
-        </li> --}}
         <hr class="sidebar-divider">
         @if ($users->login_level == 'admin')
             <div class="sidebar-heading">
