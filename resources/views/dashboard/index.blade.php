@@ -7,7 +7,7 @@
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables') }}/datatables.min.css"> --}}
     <link href="{{ asset('datatables') }}/datatables.min.css" rel="stylesheet">
 @endpush
-
+РусскиЙ
 @section('main-content')
     <div class="row">
         <div class="col-xl-3 col-md-6 mb-4">
