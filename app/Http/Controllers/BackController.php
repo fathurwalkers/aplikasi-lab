@@ -34,10 +34,27 @@ class BackController extends Controller
     {
         $session_users = session('data_login');
         $users = Login::find($session_users->id);
-        $login = Login::whereNotIn('id', [$users->id])->get();
+        $login = Login::where('login_level', 'user')->get();
         return view('user.daftar-user', [
             'login' => $login
         ]);
+    }
+
+    public function hapus_user(Request $request, $id)
+    {
+        $login = Login::find($id);
+        dd($login);
+    }
+
+    public function update_user(Request $request, $id)
+    {
+        $login = Login::find($id);
+        dd($login);
+    }
+
+    public function post_tambah_user(Request $request)
+    {
+        $login = new Login;
     }
 
     public function login()

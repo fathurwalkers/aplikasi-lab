@@ -18,20 +18,19 @@
             Features
         </div>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap1"
-                aria-expanded="true" aria-controls="collapseBootstrap1">
-                <i class="far fa-fw fa-window-maximize"></i>
-                <span>Data</span>
-            </a>
-            <div id="collapseBootstrap1" class="collapse" aria-labelledby="headingBootstrap"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Manajemen Data</h6>
-                    <a class="collapse-item" href="{{ route('daftar-barang') }}">Data Barang</a>
-                    <a class="collapse-item" href="{{ route('daftar-penawaran') }}">Laporan Penawaran</a>
-                    <a class="collapse-item" href="#">Laporan Invoice</a>
-                </div>
-            </div>
+            <a class="nav-link" href="{{ route('daftar-barang') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Data Barang</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('daftar-penawaran') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Penawaran</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Invoice</span></a>
         </li>
         @if ($users->login_level == 'user')
             <li class="nav-item">
@@ -57,23 +56,26 @@
             </div>
         </li> --}}
         <hr class="sidebar-divider">
-        <div class="sidebar-heading">
-            MORE
-        </div>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable3"
-                aria-expanded="true" aria-controls="collapseTable3">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Kelola User</span>
-            </a>
-            <div id="collapseTable3" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">User Management</h6>
-                    {{-- <a class="collapse-item" href="simple-tables.html">Administrator</a> --}}
-                    <a class="collapse-item" href="#">User Akun</a>
-                </div>
+        @if ($users->login_level == 'admin')
+            <div class="sidebar-heading">
+                MORE
             </div>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable3"
+                    aria-expanded="true" aria-controls="collapseTable3">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Kelola User</span>
+                </a>
+                <div id="collapseTable3" class="collapse" aria-labelledby="headingTable"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">User Management</h6>
+                        {{-- <a class="collapse-item" href="simple-tables.html">Administrator</a> --}}
+                        <a class="collapse-item" href="{{ route('daftar-user') }}">Daftar Pengguna</a>
+                    </div>
+                </div>
+            </li>
+        @endif
         {{-- <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable4"
                 aria-expanded="true" aria-controls="collapseTable4">

@@ -19,9 +19,12 @@ Route::post('/logout', [BackController::class, 'logout'])->name('logout');
 Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () {
     Route::get('/', [BackController::class, 'index'])->name('dashboard');
 
-    Route::group(["prefix" => "lab"], function () {
-        Route::get('/', [LabController::class, 'daftar_lab'])->name('daftar-lab');
-        Route::post('/hapus/{id}', [LabController::class, 'hapus_lab'])->name('hapus-lab');
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', fn () => redirect()->route('daftar-user'));
+        Route::get('/daftar-user', [BackController::class, 'daftar_user'])->name('daftar-user');
+        Route::post('/tambah-user', [BackController::class, 'post_tambah_user'])->name('tambah-user');
+        Route::post('/update-user/{id}', [BackController::class, 'update_user'])->name('update-user');
+        Route::post('/hapus-user/{id}', [BackController::class, 'hapus_user'])->name('hapus-user');
     });
 
     Route::group(["prefix" => "barang"], function () {
