@@ -38,7 +38,6 @@ class PenawaranController extends Controller
         $session_users = session('data_login');
         $users = Login::find($session_users->id);
         $data_users = Data::where('login_id', $users->id)->first();
-        // dd($data_users);
         $array_barang = $request->hide_barang;
         $total_harga = $request->hide_harga;
         $penawaran_deskripsi = $request->penawaran_deskripsi;
