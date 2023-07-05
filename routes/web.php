@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\BackController;
-use App\Http\Controllers\BarangController;
-use App\Http\Controllers\GenerateController;
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\LabController;
-use App\Http\Controllers\PenawaranController;
+use App\Http\Controllers\{
+    BackController,
+    BarangController,
+    GenerateController,
+    InvoiceController,
+    PenawaranController
+};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
