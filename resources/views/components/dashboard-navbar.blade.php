@@ -28,7 +28,7 @@
                 <span>Penawaran</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('daftar-invoice') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Invoice</span></a>
         </li>

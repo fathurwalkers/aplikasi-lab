@@ -45,6 +45,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No.</th>
+                                    <th>Pembuat Penawaran</th>
                                     <th>Kode Invoice</th>
                                     <th>Status</th>
                                     <th>Opsi</th>
@@ -54,9 +55,18 @@
 
                                 @foreach ($invoice as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->invoice_kode }}</td>
-                                        <td>{{ $item->invoice_status }}</td>
+                                        <td class="text-center text-dark">{{ $loop->iteration }}</td>
+                                        <td class="text-center text-dark">{{ $users->login_nama }}</td>
+                                        <td class="text-center text-dark">{{ $item->invoice_kode }}</td>
+                                        @switch($item->invoice_status)
+                                            @case('NO')
+                                                <td class="text-center text-dark">Belum dibayar</td>
+                                            @break
+
+                                            @case('YES')
+                                                <td class="text-center text-dark">Sudah dibayar</td>
+                                            @break
+                                        @endswitch
                                         <td class="mx-auto d-flex justify-content-center">
                                             {{-- <button type="button" class="btn btn-sm btn-success mr-1">Lihat</button> --}}
                                             {{-- <button type="button" class="btn btn-sm btn-info mr-1">Ubah</button> --}}
@@ -67,7 +77,8 @@
                                                     Invoice</button>
                                             </form>
                                             <button type="button" class="btn btn-sm btn-info"
-                                                onclick="simpan_penawaran({{ $item->id }})">PILIH</button>
+                                                onclick="simpan_penawaran({{ $item->id }})">Konfirmasi
+                                                Pembayaran</button>
 
                                             <!-- Modal Hapus -->
                                             <div class="modal fade" id="modal_hapus{{ $item->id }}" tabindex="-1"
