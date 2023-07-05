@@ -1,5 +1,5 @@
 @extends('layouts.dashboard-layouts')
-@section('title', 'Ujian Kepolisian')
+@section('title', 'RuangLab')
 @section('content-prefix', 'Beranda')
 @section('content-header', 'Dashboard - Beranda')
 
