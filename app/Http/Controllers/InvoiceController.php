@@ -3,18 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\{Hash, Validator};
+use Illuminate\Support\{Str, Arr};
 use Faker\Factory as Faker;
-use Illuminate\Support\Arr;
-use App\Models\Login;
-use App\Models\Data;
-use App\Models\Barang;
-use App\Models\Invoice;
-use App\Models\Lab;
-use App\Models\Penawaran;
-use App\Models\PenawaranInvoice;
+use App\Models\{Login, Data, Barang, Invoice, Lab, Penawaran, PenawaranInvoice};
 
 class InvoiceController extends Controller
 {
@@ -25,7 +17,6 @@ class InvoiceController extends Controller
         $data_users = Data::where('login_id', $users->id)->first();
         $array_penawaran = $request->hide_penawaran;
         $explode_penawaran = explode(",", $array_penawaran);
-
         $penawaran = Penawaran::findMany($explode_penawaran);
         foreach ($penawaran as $item) {
             $invoice = new Invoice;
@@ -38,7 +29,6 @@ class InvoiceController extends Controller
                 'updated_at' => now()
             ]);
             $save_invoice->save();
-
             $penawaran_invoice = new PenawaranInvoice;
             $save_penawaran_invoice = $penawaran_invoice->create([
                 'penawaran_id' => $item->id,
@@ -57,7 +47,6 @@ class InvoiceController extends Controller
         $invoice = Invoice::find($id_invoice);
         $penawaran_invoice = PenawaranInvoice::where('invoice_id', $invoice->id)->first();
         $penawaran = Penawaran::find($penawaran_invoice->penawaran_id);
-
         return view('invoice.cetak-invoice', [
             'invoice' => $invoice,
             'penawaran' => $penawaran,
