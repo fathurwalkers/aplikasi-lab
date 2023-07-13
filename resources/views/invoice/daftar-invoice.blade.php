@@ -76,9 +76,13 @@
                                                 <button type="submit" class="btn btn-sm btn-info mr-2">Cetak
                                                     Invoice</button>
                                             </form>
-                                            <button type="button" class="btn btn-sm btn-info"
-                                                onclick="simpan_penawaran({{ $item->id }})">Konfirmasi
-                                                Pembayaran</button>
+
+                                            @if ($users->login_level == 'admin')
+                                                <button type="button" class="btn btn-sm btn-info"
+                                                    onclick="simpan_penawaran({{ $item->id }})">
+                                                    Konfirmasi Pembayaran
+                                                </button>
+                                            @endif
 
                                             <!-- Modal Hapus -->
                                             <div class="modal fade" id="modal_hapus{{ $item->id }}" tabindex="-1"

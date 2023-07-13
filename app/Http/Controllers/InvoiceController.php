@@ -66,7 +66,7 @@ class InvoiceController extends Controller
                 foreach ($penawaran as $item) {
                     $array_penawaran = Arr::prepend($array_penawaran, $item["id"]);
                 }
-                $penawaran_invoice = PenawaranInvoice::findMany($array_penawaran);
+                $penawaran_invoice = PenawaranInvoice::whereIn('penawaran_id', $array_penawaran)->get();
                 foreach ($penawaran_invoice as $items) {
                     $cari_invoice = Invoice::find($items->invoice_id)->toArray();
                     $array_id_invoice = Arr::prepend($array_id_invoice, $cari_invoice["id"]);
