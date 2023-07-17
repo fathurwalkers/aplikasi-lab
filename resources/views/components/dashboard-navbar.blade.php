@@ -39,6 +39,12 @@
                     <span>Pengadaan & Peminjaman</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('buat-penawaran') }}">
+                    <i class="fas fa-fw fa-palette"></i>
+                    <span>Pelayanan Jasa</span>
+                </a>
+            </li>
         @endif
         <hr class="sidebar-divider">
         @if ($users->login_level == 'admin')

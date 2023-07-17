@@ -66,10 +66,24 @@
                                         <td class="mx-auto btn-group">
                                             {{-- <button type="button" class="btn btn-sm btn-success mr-1">Lihat</button> --}}
                                             {{-- <button type="button" class="btn btn-sm btn-info mr-1">Ubah</button> --}}
-                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                            <button type="button" class="btn btn-sm btn-danger mr-1" data-toggle="modal"
                                                 data-target="#modal_hapus{{ $item->id }}">Hapus</button>
-                                            <button type="button" class="btn btn-sm btn-info mr-1"
-                                                onclick="simpan_penawaran({{ $item->id }})">PILIH</button>
+                                            @if ($users->login_level == 'admin')
+                                                @if ($item->penawaran_status == 'PENDING')
+                                                    <form action="{{ route('konfirmasi-penawaran', $item->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-info">
+                                                            Konfirmasi
+                                                        </button>
+                                                    </form>
+                                                @endif
+
+                                                @if ($item->penawaran_status == 'KONFIRMASI')
+                                                    <button type="button" class="btn btn-sm btn-info mr-1"
+                                                        onclick="simpan_penawaran({{ $item->id }})">PILIH</button>
+                                                @endif
+                                            @endif
 
                                             <!-- Modal Hapus -->
                                             <div class="modal fade" id="modal_hapus{{ $item->id }}" tabindex="-1"

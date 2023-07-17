@@ -84,4 +84,5 @@ class InvoiceController extends Controller
                 break;
         }
     }
+
 }

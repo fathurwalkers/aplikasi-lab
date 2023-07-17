@@ -95,4 +95,19 @@ class PenawaranController extends Controller
             return redirect()->route('daftar-penawaran')->with('status', 'Gagal menghapus Data Penawaran.');
         }
     }
+
+    public function konfirmasi_penawaran(Request $request, $id)
+    {
+        $penawaran_id = $id;
+        $penawaran = Penawaran::find($penawaran_id);
+        $update_penawaran = $penawaran->update([
+            'penawaran_status' => 'KONFIRMASI',
+            'updated_at' => now(),
+        ]);
+        if ($update_penawaran == true) {
+            return redirect()->route('daftar-penawaran')->with('status', 'Berhasil melakukan konfirmasi Data Penawaran.');
+        } else {
+            return redirect()->route('daftar-penawaran')->with('status', 'Gagal melakukan konfirmasi Data Penawaran.');
+        }
+    }
 }

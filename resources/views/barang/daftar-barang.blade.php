@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
-                            <button type="button" class="btn btn-sm btn-info d-flex justify-content-end" data-toggle="modal"
+                        <button type="button" class="btn btn-sm btn-info d-flex justify-content-end" data-toggle="modal"
                             data-target="#modal_tambah">Tambah Barang</button>
                     </div>
 
@@ -34,8 +34,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabelLogout">Peringatan Aksi!</h5>
-                                    <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -47,19 +46,21 @@
 
                                             <div class="form-row">
                                                 {{-- <div class="col-sm-6 col-md-6 col-lg-6"> --}}
-                                                    <div class="form-group col-sm-6 col-md-6 col-lg-6">
-                                                        <label for="barang_nama">Nama Barang </label>
-                                                        <input type="text" class="form-control" id="barang_nama" placeholder="Contoh : Djarum Coklat. ">
-                                                    </div>
-                                                    <div class="form-group col-sm-6 col-md-6 col-lg-6">
-                                                        <label for="barang_nama">Nama Barang </label>
-                                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                                            <option selected>Choose...</option>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
-                                                        </select>
-                                                    </div>
+                                                <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                                                    <label for="barang_nama">Nama Barang </label>
+                                                    <input type="text" class="form-control" id="barang_nama"
+                                                        placeholder="Contoh : Djarum Coklat. ">
+                                                </div>
+                                                <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                                                    <label for="barang_nama">Nama Barang </label>
+                                                    <select class="custom-select my-1 mr-sm-2"
+                                                        id="inlineFormCustomSelectPref">
+                                                        <option selected>Choose...</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
                                                 {{-- </div> --}}
                                             </div>
 
@@ -70,7 +71,7 @@
                                         @csrf
                                         <input type="hidden" name="hapus_id" value="s">
                                         <button type="button" class="btn btn-outline-danger"
-                                        data-dismiss="modal">Batalkan</button>
+                                            data-dismiss="modal">Batalkan</button>
                                         <button type="submit" class="btn btn-primary">Hapus</button>
                                     </div>
                                 </form>
@@ -99,52 +100,56 @@
                             <tbody>
 
                                 @foreach ($barang as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->barang_nama }}</td>
-                                    <td>{{ $item->barang_kondisi }}</td>
-                                    <td>{{ $item->barang_kode }}</td>
-                                    <td>{{ $item->barang_stok }}</td>
-                                    <td>{{ $item->barang_nilai }}</td>
-                                    <td class="mx-auto btn-group">
-                                        <button type="button" class="btn btn-sm btn-success mr-1">Lihat</button>
-                                        <button type="button" class="btn btn-sm btn-info mr-1">Ubah</button>
-                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#modal_hapus{{ $item->id }}">Hapus</button>
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->barang_nama }}</td>
+                                        <td>{{ $item->barang_kondisi }}</td>
+                                        <td>{{ $item->barang_kode }}</td>
+                                        <td>{{ $item->barang_stok }}</td>
+                                        <td>{{ $item->barang_nilai }}</td>
+                                        <td class="mx-auto btn-group">
+                                            {{-- <button type="button" class="btn btn-sm btn-success mr-1">Lihat</button> --}}
+                                            <button type="button" class="btn btn-sm btn-info mr-1">Ubah</button>
+                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                                data-target="#modal_hapus{{ $item->id }}">Hapus</button>
 
-                                        <!-- Modal Hapus -->
-                                        <div class="modal fade" id="modal_hapus{{ $item->id }}" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabelLogout">Peringatan Aksi!</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Apakah anda yakin ingin menghapus item ini?
-                                                            <br>
-                                                            Nama Barang : <b>{{ $item->barang_nama }}</b>
-                                                        </p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <form action="{{ route('hapus-barang', $item->id) }}" method="POST">
-                                                            @csrf
-                                                            <input type="hidden" name="hapus_id" value="{{ $item->id }}">
-                                                            <button type="button" class="btn btn-outline-danger"
-                                                            data-dismiss="modal">Batalkan</button>
-                                                            <button type="submit" class="btn btn-primary">Hapus</button>
-                                                        </form>
+                                            <!-- Modal Hapus -->
+                                            <div class="modal fade" id="modal_hapus{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabelLogout">Peringatan
+                                                                Aksi!</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Apakah anda yakin ingin menghapus item ini?
+                                                                <br>
+                                                                Nama Barang : <b>{{ $item->barang_nama }}</b>
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <form action="{{ route('hapus-barang', $item->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <input type="hidden" name="hapus_id"
+                                                                    value="{{ $item->id }}">
+                                                                <button type="button" class="btn btn-outline-danger"
+                                                                    data-dismiss="modal">Batalkan</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Hapus</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                                 @endforeach
 
                             </tbody>
