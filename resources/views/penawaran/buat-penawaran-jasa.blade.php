@@ -24,10 +24,16 @@
 
                 <form action="{{ route('proses-penawaran') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="id_jasa" id="id_jasa">
                     <input type="hidden" id="hide_barang" name="hide_barang">
                     <input type="hidden" id="hide_harga" name="hide_harga">
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label for="jasa_nama">Pelayanan Jasa : </label>
+                            <input type="text" name="jasa_nama" class="form-control" id="jasa_nama" placeholder="..."
+                                disabled>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
                             <label for="penawaran_deskripsi">Deskripsi Penawaran : </label>
                             <input type="text" name="penawaran_deskripsi" class="form-control" id="penawaran_deskripsi"
                                 placeholder="Tuliskan deskripsi tentang pengadaan atau peminjaman barang anda...">
@@ -35,7 +41,7 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-info" id="button_proses">
+                            <button type="submit" class="btn btn-info" id="button_proses" disabled>
                                 Proses Penawaran
                             </button>
                         </div>
@@ -106,7 +112,7 @@
                                         </td>
                                         <td class="mx-auto btn-group">
                                             <button type="button" class="btn btn-sm btn-info"
-                                                onclick="simpan_barang({{ $item->id }},{{ $item->barang_nilai }})">PILIH</button>
+                                                onclick="setjasa('{{ $item->id }}','{{ $item->jasa_nama_alat }}')">PILIH</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -125,6 +131,11 @@
 @push('js')
     <script src="{{ asset('datatables') }}/datatables.min.js"></script>
     <script>
+        function setjasa(id, nama) {
+            $('#jasa_nama').val(nama);
+            $('#id_jasa').val(id);
+        }
+
         let array_barang = [];
         let harga_total = 0;
         let count_items = 0;
