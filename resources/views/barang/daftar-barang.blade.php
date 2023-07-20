@@ -90,8 +90,8 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Barang</th>
-                                    <th>Kode</th>
                                     <th>Kondisi</th>
+                                    <th>Kode</th>
                                     <th>Jumlah Stok</th>
                                     <th>Nilai (Sewa)</th>
                                     <th>Opsi</th>
