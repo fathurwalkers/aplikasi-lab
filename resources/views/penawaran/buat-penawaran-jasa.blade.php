@@ -44,7 +44,7 @@
 
                 <hr />
 
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-sm-6 col-md-6 col-lg-6">
                         <h5>
                             <b>
@@ -66,7 +66,7 @@
                         </button>
                     </div>
 
-                </div>
+                </div> --}}
 
                 <hr />
                 <div class="row">
@@ -89,14 +89,20 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="text-center">{{ $item->jasa_nama_alat }}</td>
-                                        <td class="text-center">{{ $item->jasa_harga_care }}</td>
-                                        <td class="text-center">{{ $item->jasa_harga_cleaning }}</td>
-                                        <td class="text-center">{{ $item->jasa_harga_kalibrasi }}</td>
                                         <td class="text-center">
+                                            {{ 'Rp ' . number_format($item->jasa_harga_care, 2, ',', '.') }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ 'Rp ' . number_format($item->jasa_harga_cleaning, 2, ',', '.') }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ 'Rp ' . number_format($item->jasa_harga_kalibrasi, 2, ',', '.') }}
+                                        </td>
+                                        <td class="">
                                             @php
                                                 $sum_total = $item->jasa_harga_care + $item->jasa_harga_cleaning + $item->jasa_harga_kalibrasi;
                                             @endphp
-                                            {{ $sumtotal }}
+                                            {{ 'Rp ' . number_format($sum_total, 2, ',', '.') }}
                                         </td>
                                         <td class="mx-auto btn-group">
                                             <button type="button" class="btn btn-sm btn-info"
