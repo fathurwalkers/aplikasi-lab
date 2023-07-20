@@ -22,20 +22,22 @@
                         </h4>
                     </div>
 
-                    <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
-                        <button type="button" class="badge badge-lg badge-primary mr-1">
-                            <b>Total Pilihan :
-                                <span id="counterbadges">0</span>
-                            </b>
-                        </button>
-                        <form action="{{ route('pembuatan-invoice') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="hide_penawaran" id="hide_penawaran">
-                            <button type="submit" class="btn btn-md btn-primary">
-                                Proses
+                    @if ($users->login_level == 'user')
+                        <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
+                            <button type="button" class="badge badge-lg badge-primary mr-1">
+                                <b>Total Pilihan :
+                                    <span id="counterbadges">0</span>
+                                </b>
                             </button>
-                        </form>
-                    </div>
+                            <form action="{{ route('pembuatan-invoice') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="hide_penawaran" id="hide_penawaran">
+                                <button type="submit" class="btn btn-md btn-primary">
+                                    Proses
+                                </button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
 
                 <hr />
@@ -78,7 +80,8 @@
                                                         </button>
                                                     </form>
                                                 @endif
-
+                                            @endif
+                                            @if ($users->login_level == 'user')
                                                 @if ($item->penawaran_status == 'KONFIRMASI')
                                                     <button type="button" class="btn btn-sm btn-info mr-1"
                                                         onclick="simpan_penawaran({{ $item->id }})">PILIH</button>
