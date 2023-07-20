@@ -12,6 +12,7 @@ use App\Models\Login;
 use App\Models\Data;
 use App\Models\Barang;
 use App\Models\Invoice;
+use App\Models\Jasa;
 use App\Models\Lab;
 use App\Models\Penawaran;
 
@@ -215,5 +216,20 @@ class GenerateController extends Controller
             'DO Meter',
             'BOD Meter'
         ];
+
+        foreach ($array_nama_alat as $value) {
+            $jasa = new Jasa;
+            $randomDigit = $faker->numberBetween(5,6);
+            $randomHarga = $faker->randomNumber($randomDigit);
+            $save_jasa = $jasa->create([
+                'jasa_nama_alat' => $value,
+                'jasa_harga_care' => $randomHarga,
+                'jasa_harga_cleaning' => $randomHarga,
+                'jasa_harga_kalibrasi' => $randomHarga,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            $save_jasa->save();
+        }
     }
 }
