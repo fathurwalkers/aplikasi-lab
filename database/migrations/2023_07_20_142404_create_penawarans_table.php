@@ -23,6 +23,9 @@ return new class extends Migration
             $table->unsignedBigInteger('barang_id')->nullable()->default(null);
             $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
 
+            $table->unsignedBigInteger('jasa_id')->nullable()->default(null);
+            $table->foreign('jasa_id')->references('id')->on('jasa')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
