@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('buat-penawaran') }}">
+                <a class="nav-link" href="{{ route('buat-penawaran-jasa') }}">
                     <i class="fas fa-fw fa-palette"></i>
                     <span>Pelayanan Jasa</span>
                 </a>

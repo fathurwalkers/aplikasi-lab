@@ -75,32 +75,29 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No.</th>
-                                    <th>Barang</th>
-                                    <th>Kondisi</th>
-                                    <th>Kode</th>
-                                    <th>Jumlah Stok</th>
-                                    <th>Nilai (Sewa)</th>
+                                    <th>Pelayanan</th>
+                                    <th>Care (CAR)</th>
+                                    <th>Cleaning (CLEAN)</th>
+                                    <th>Kalibrasi (CAL)</th>
+                                    <th>Tarif Paket Lengkap (CAR + CLEAN + CAL)</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($barang as $item)
+                                @foreach ($jasa as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->barang_nama }}</td>
-                                        @switch($item->barang_kondisi)
-                                            @case('BAIK')
-                                                <td><span style="color:green;">{{ $item->barang_kondisi }}</span></td>
-                                            @break
-
-                                            @case('RUSAK')
-                                                <td><span style="color:red;">{{ $item->barang_kondisi }}</span></td>
-                                            @break
-                                        @endswitch
-                                        <td>{{ $item->barang_kode }}</td>
-                                        <td class="text-center">{{ $item->barang_stok }}</td>
-                                        <td class="text-center">{{ $item->barang_nilai }}</td>
+                                        <td class="text-center">{{ $item->jasa_nama_alat }}</td>
+                                        <td class="text-center">{{ $item->jasa_harga_care }}</td>
+                                        <td class="text-center">{{ $item->jasa_harga_cleaning }}</td>
+                                        <td class="text-center">{{ $item->jasa_harga_kalibrasi }}</td>
+                                        <td class="text-center">
+                                            @php
+                                                $sum_total = $item->jasa_harga_care + $item->jasa_harga_cleaning + $item->jasa_harga_kalibrasi;
+                                            @endphp
+                                            {{ $sumtotal }}
+                                        </td>
                                         <td class="mx-auto btn-group">
                                             <button type="button" class="btn btn-sm btn-info"
                                                 onclick="simpan_barang({{ $item->id }},{{ $item->barang_nilai }})">PILIH</button>

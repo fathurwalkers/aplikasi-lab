@@ -189,4 +189,31 @@ class GenerateController extends Controller
             $save_barang->save();
         }
     }
+
+    public function generate_jasa()
+    {
+        $faker = Faker::create('id_ID');
+        $array_nama_alat = [
+            'Mikroskop',
+            'Oven',
+            'Inkubator',
+            'Autoklaf / Sterilizer',
+            'Furnace / Tanur',
+            'Waterbath',
+            'Vortex Mixer',
+            'Shaker',
+            'Hot Plate / Stirer',
+            'Centrifuge',
+            'Timbangan',
+            'Spektrofotometer',
+            'Lemari Asam',
+            'Laminar Air Flow',
+            'Biosafety Cabinet',
+            'Shaker Incubator',
+            'Mikrotom',
+            'pH Meter',
+            'DO Meter',
+            'BOD Meter'
+        ];
+    }
 }
