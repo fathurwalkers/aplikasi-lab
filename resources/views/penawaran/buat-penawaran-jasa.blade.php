@@ -22,7 +22,7 @@
                     </div>
                 </div>
 
-                <form action="{{ route('proses-penawaran') }}" method="POST">
+                <form action="{{ route('proses-penawaran-jasa') }}" method="POST">
                     @csrf
                     <input type="hidden" name="id_jasa" id="id_jasa">
                     <input type="hidden" id="hide_barang" name="hide_barang">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-info" id="button_proses" disabled>
+                            <button type="submit" class="btn btn-info" id="button_proses">
                                 Proses Penawaran
                             </button>
                         </div>

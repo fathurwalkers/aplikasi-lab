@@ -64,11 +64,41 @@ class PenawaranController extends Controller
                 'penawaran_harga_total' => intval($total_harga),
                 'data_id' => $data_users->id,
                 'barang_id' => $item->id,
+                'jasa_id' => NULL,
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
             $save_penawaran->save();
         }
+        return redirect()->route('daftar-penawaran')->with('status', 'Penawaran telah berhasil dibuat, silahkan menunggu konfirmasi penawaran anda disetujui oleh Admin.');
+    }
+
+    public function proses_penawaran_jasa(Request $request)
+    {
+        $session_users = session('data_login');
+        $users = Login::find($session_users->id);
+        $data_users = Data::where('login_id', $users->id)->first();
+
+        $jasa = Jasa::find(intval($request->id_jasa));
+
+        $total_harga = $jasa->jasa_harga_care + $jasa->jasa_harga_cleaning + $jasa->jasa_harga_kalibrasi;
+        $penawaran_deskripsi = $request->penawaran_deskripsi;
+        $penawaran_kode = "PNRWN" . Str::random(10);
+        $penawaran_status = "PENDING";
+
+        $penawaran = new Penawaran;
+        $save_penawaran = $penawaran->create([
+            'penawaran_kode' => strtoupper($penawaran_kode),
+            'penawaran_deskripsi' => $penawaran_deskripsi,
+            'penawaran_status' => $penawaran_status,
+            'penawaran_harga_total' => intval($total_harga),
+            'data_id' => $data_users->id,
+            'barang_id' => NULL,
+            'barang_id' => $jasa->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        $save_penawaran->save();
         return redirect()->route('daftar-penawaran')->with('status', 'Penawaran telah berhasil dibuat, silahkan menunggu konfirmasi penawaran anda disetujui oleh Admin.');
     }
 
