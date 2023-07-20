@@ -12,6 +12,7 @@ use App\Models\Login;
 use App\Models\Data;
 use App\Models\Barang;
 use App\Models\Invoice;
+use App\Models\Jasa;
 use App\Models\Lab;
 use App\Models\Penawaran;
 use Illuminate\Support\Facades\Redis;
@@ -30,6 +31,14 @@ class PenawaranController extends Controller
         $barang = Barang::all();
         return view('penawaran.buat-penawaran', [
             'barang' => $barang,
+        ]);
+    }
+
+    public function buat_penawaran_jasa()
+    {
+        $jasa = Jasa::all();
+        return view('penawaran.buat-penawaran-jasa', [
+            'jasa' => $jasa,
         ]);
     }
 

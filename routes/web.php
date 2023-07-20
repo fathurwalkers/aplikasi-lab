@@ -39,6 +39,7 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
         Route::get('/buat-penawaran', [PenawaranController::class, 'buat_penawaran'])->name('buat-penawaran');
         Route::get('/buat-penawaran-jasa', [PenawaranController::class, 'buat_penawaran_jasa'])->name('buat-penawaran-jasa');
         Route::post('/proses-penawaran', [PenawaranController::class, 'proses_penawaran'])->name('proses-penawaran');
+        Route::post('/proses-penawaran-jasa', [PenawaranController::class, 'proses_penawaran_jasa'])->name('proses-penawaran-jasa');
         Route::post('/hapus/{id}', [PenawaranController::class, 'hapus_penawaran'])->name('hapus-penawaran');
         Route::post('/konfirmasi-penawaran/{id}', [PenawaranController::class, 'konfirmasi_penawaran'])->name('konfirmasi-penawaran');
     });
