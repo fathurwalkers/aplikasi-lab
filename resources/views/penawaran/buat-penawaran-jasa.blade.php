@@ -16,7 +16,7 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <p>Silahkan melakukan penawaran dengan memilih satu atau lebih dari barang yang tersedia pada tabel
+                        <p>Silahkan melakukan penawaran dengan memilih satu dari Pelayanan Jasa yang tersedia pada tabel
                             dibawah. Jangan lupa mengisi deskripsi penawaran dan Tekan tombol "Proses Penawaran" jika ingin
                             menyelesaikan penawaran untuk melanjutkan ke proses pembuatan invoice.</p>
                     </div>
