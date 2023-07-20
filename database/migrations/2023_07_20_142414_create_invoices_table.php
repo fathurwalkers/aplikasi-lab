@@ -6,26 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('invoice', function (Blueprint $table) {
             $table->id();
+
+            $table->string('invoice_kode')->nullable();
+            $table->string('invoice_status')->nullable(); // BELUM LUNAS - LUNAS
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('invoice');
     }
 };
