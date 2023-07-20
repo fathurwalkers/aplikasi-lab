@@ -8,7 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class PenawaranInvoice extends Model
 {
     use HasFactory;
-    protected $table = 'penawaran_invoice';
-    protected $guarded = [];
-    protected $primaryKey = 'id';
 }
