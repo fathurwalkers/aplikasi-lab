@@ -81,7 +81,22 @@ class PenawaranController extends Controller
 
         $jasa = Jasa::find(intval($request->id_jasa));
 
-        $total_harga = $jasa->jasa_harga_care + $jasa->jasa_harga_cleaning + $jasa->jasa_harga_kalibrasi;
+        $jenis_jasa = $request->jenis_jasa;
+        switch ($jenis_jasa) {
+            case 'car':
+                $total_harga = $jasa->jasa_harga_care;
+                break;
+            case 'clean':
+                $total_harga = $jasa->jasa_harga_cleaning;
+                break;
+            case 'cal':
+                $total_harga = $jasa->jasa_harga_kalibrasi;
+                break;
+            case 'paketlengkap':
+                $total_harga = $total_harga = $jasa->jasa_harga_care + $jasa->jasa_harga_cleaning + $jasa->jasa_harga_kalibrasi;
+                break;
+        }
+
         $penawaran_deskripsi = $request->penawaran_deskripsi;
         $penawaran_kode = "PNRWN" . Str::random(10);
         $penawaran_status = "PENDING";

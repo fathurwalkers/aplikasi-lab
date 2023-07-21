@@ -48,10 +48,11 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
         Route::get('/', [InvoiceController::class, 'daftar_invoice'])->name('daftar-invoice');
         Route::post('/pembuatan-invoice', [InvoiceController::class, 'pembuatan_invoice'])->name('pembuatan-invoice');
         Route::post('/cetak-invoice', [InvoiceController::class, 'cetak_invoice'])->name('cetak-invoice');
+        Route::post('/konfirmasi-pembayaran/{id}', [InvoiceController::class, 'konfirmasi_pembayaran'])->name('konfirmasi-pembayaran');
     });
 
     Route::group(['prefix' => 'kwitansi'], function () {
-        Route::get('/cetak-kwitansi', [KwitansiController::class, 'cetak_kwitansi'])->name('cetak-kwitansi');
+        Route::post('/cetak-kwitansi', [KwitansiController::class, 'cetak_kwitansi'])->name('cetak-kwitansi');
     });
 
 });

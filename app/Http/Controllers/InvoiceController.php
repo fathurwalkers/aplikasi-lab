@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Hash, Validator};
 use Illuminate\Support\{Str, Arr};
 use Faker\Factory as Faker;
-use App\Models\{Login, Data, Barang, Invoice, Lab, Penawaran, PenawaranInvoice};
+use App\Models\{Login, Data, Barang, Invoice, Lab, Penawaran, PenawaranInvoice, Transaksi};
 
 class InvoiceController extends Controller
 {
@@ -82,6 +82,42 @@ class InvoiceController extends Controller
                     'invoice' => $invoice
                 ]);
                 break;
+        }
+    }
+
+    public function konfirmasi_pembayaran(Request $request, $id)
+    {
+        $invoice_id = $id;
+        $invoice = Invoice::find($invoice_id);
+        $session_users = session('data_login');
+        $users = Login::find($session_users->id);
+        $data_users = Data::where('login_id', $users->id)->first();
+        $invoice_kode = "TNKWIT" . Str::random(5);
+        $penawaran_invoice = PenawaranInvoice::where('invoice_id', $invoice->id)->get();
+        dd($penawaran_invoice);
+        $update_invoice = $invoice->update([
+            'invoice_status' => 'YES',
+            'updated_at' => now(),
+        ]);
+
+        if ($update_invoice == true) {
+
+            $kwitansi = new Transaksi;
+            // $save_kwitansi = $kwitansi->create([
+            //     'transaksi_pemilik' => $data_users->data_nama,
+            //     'transaksi_kode' => ,
+            //     'transaksi_status' => ,
+            //     'transaksi_harga_total' => ,
+            //     'transaksi_bukti' => ,
+            //     'transaksi_kwitansi' => ,
+            //     'invoice_id' => $invoice->id,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ]);
+
+            return redirect()->route('daftar-invoice')->with('status', 'Berhasil melakukan konfirmasi Data Invoice.');
+        } else {
+            return redirect()->route('daftar-invoice')->with('status', 'Gagal melakukan konfirmasi Data Invoice.');
         }
     }
 

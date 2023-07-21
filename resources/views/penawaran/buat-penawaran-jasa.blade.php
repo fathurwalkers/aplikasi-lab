@@ -28,15 +28,29 @@
                     <input type="hidden" id="hide_barang" name="hide_barang">
                     <input type="hidden" id="hide_harga" name="hide_harga">
                     <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
                             <label for="jasa_nama">Pelayanan Jasa : </label>
                             <input type="text" name="jasa_nama" class="form-control" id="jasa_nama" placeholder="..."
                                 disabled>
                         </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
                             <label for="penawaran_deskripsi">Deskripsi Penawaran : </label>
                             <input type="text" name="penawaran_deskripsi" class="form-control" id="penawaran_deskripsi"
                                 placeholder="Tuliskan deskripsi tentang pengadaan atau peminjaman barang anda...">
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="form-group">
+                                <label for="jenis_jasa">
+                                    <h6>Jenis Layanan</h6>
+                                </label>
+                                <select class="form-control" id="jenis_jasa" name="jenis_jasa">
+                                    <option default value="car">Care (CAR)</option>
+                                    <option value="clean">Cleaning (CLEAN)</option>
+                                    <option value="cal">Kalibrasi (CAL)</option>
+                                    <option value="paketlengkap">Paket Lengkap (CAR + CLEAN + CAL)
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-2">

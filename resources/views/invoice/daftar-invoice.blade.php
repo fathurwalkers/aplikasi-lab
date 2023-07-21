@@ -78,11 +78,23 @@
                                             </form>
 
                                             @if ($users->login_level == 'admin')
-                                                <button type="button" class="btn btn-sm btn-info"
-                                                    onclick="simpan_penawaran({{ $item->id }})">
-                                                    Konfirmasi Pembayaran
-                                                </button>
+                                                <form action="{{ route('konfirmasi-pembayaran', $item->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id_invoice" value="{{ $item->id }}">
+                                                    <button type="submit" class="btn btn-sm btn-info ml-1">
+                                                        Konfirmasi Pembayaran</button>
+                                                </form>
                                             @endif
+
+                                            {{-- @if ($item->invoice_status == 'YES') --}}
+                                            <form action="{{ route('cetak-kwitansi') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id_invoice" value="{{ $item->id }}">
+                                                <button type="submit" class="btn btn-sm btn-info ml-1">Cetak
+                                                    Kwitansi</button>
+                                            </form>
+                                            {{-- @endif --}}
 
                                             <!-- Modal Hapus -->
                                             <div class="modal fade" id="modal_hapus{{ $item->id }}" tabindex="-1"
