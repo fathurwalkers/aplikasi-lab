@@ -80,7 +80,7 @@ class PenawaranController extends Controller
         $data_users = Data::where('login_id', $users->id)->first();
 
         $jasa = Jasa::find(intval($request->id_jasa));
-
+        dd($request->id_jasa);
         $jenis_jasa = $request->jenis_jasa;
         switch ($jenis_jasa) {
             case 'car':
