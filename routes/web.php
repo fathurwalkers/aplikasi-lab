@@ -5,6 +5,7 @@ use App\Http\Controllers\{
     BarangController,
     GenerateController,
     InvoiceController,
+    JasaController,
     KwitansiController,
     PenawaranController
 };
@@ -32,6 +33,11 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
     Route::group(["prefix" => "barang"], function () {
         Route::get('/', [BarangController::class, 'daftar_barang'])->name('daftar-barang');
         Route::post('/hapus/{id}', [BarangController::class, 'hapus_barang'])->name('hapus-barang');
+    });
+
+    Route::group(["prefix" => "jasa"], function () {
+        Route::get('/', [JasaController::class, 'daftar_jasa'])->name('daftar-jasa');
+        Route::post('/hapus/{id}', [JasaController::class, 'hapus_jasa'])->name('hapus-jasa');
     });
 
     Route::group(["prefix" => "penawaran"], function () {

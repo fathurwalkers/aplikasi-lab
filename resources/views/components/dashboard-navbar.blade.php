@@ -23,6 +23,11 @@
                 <span>Data Barang</span></a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('daftar-jasa') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Data Pelayanan Jasa</span></a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('daftar-penawaran') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Penawaran</span></a>
