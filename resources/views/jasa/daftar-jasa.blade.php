@@ -149,7 +149,7 @@
                                                                 </p>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <form action="{{ route('hapus-barang', $item->id) }}"
+                                                                <form action="{{ route('hapus-jasa', $item->id) }}"
                                                                     method="POST">
                                                                     @csrf
                                                                     <input type="hidden" name="hapus_id"
