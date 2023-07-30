@@ -26,8 +26,18 @@ class BackController extends Controller
 
     public function index()
     {
+        $barang = Barang::all()->count();
+        $pengguna = Data::all()->count();
+        $invoice = Invoice::all()->count();
+        $penawaran = Penawaran::all()->count();
+
         $users = session('data_login');
-        return view('dashboard.index');
+        return view('dashboard.index', [
+            'barang' => $barang,
+            'pengguna' => $pengguna,
+            'invoice' => $invoice,
+            'penawaran' => $penawaran,
+        ]);
     }
 
     public function daftar_user()
