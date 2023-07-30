@@ -102,7 +102,7 @@ class InvoiceController extends Controller
 
         if ($update_invoice == true) {
 
-            $kwitansi = new Transaksi;
+            // $kwitansi = new Transaksi;
             // $save_kwitansi = $kwitansi->create([
             //     'transaksi_pemilik' => $data_users->data_nama,
             //     'transaksi_kode' => ,

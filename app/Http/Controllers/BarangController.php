@@ -46,4 +46,10 @@ class BarangController extends Controller
             return redirect()->route('daftar-barang')->with('status', 'Gagal menghapus Data barang.');
         }
     }
+
+    public function tambah_barang(Request $request)
+    {
+        $barang = new Barang;
+        dd($barang);
+    }
 }

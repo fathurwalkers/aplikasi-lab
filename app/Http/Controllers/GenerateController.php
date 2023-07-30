@@ -164,7 +164,7 @@ class GenerateController extends Controller
         // $lab = Lab::all()->toArray();
         $number = [1,2,3];
         $number2 = [1,2,3,4,5,6,7,8,9,10];
-        $array_kondisi = ["BAIK", "RUSAK"];
+        $array_kondisi = ["BARU", "RUSAK"];
 
         for ($i=0; $i < 20; $i++) {
             $barang = new Barang;
