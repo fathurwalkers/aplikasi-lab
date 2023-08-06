@@ -123,22 +123,98 @@
                                         @if ($users->login_level == 'admin')
                                             <td class="mx-auto btn-group">
                                                 {{-- <button type="button" class="btn btn-sm btn-success mr-1">Lihat</button> --}}
-                                                <button type="button" class="btn btn-sm btn-info mr-1">Ubah</button>
+                                                <button type="button" class="btn btn-sm btn-info mr-1" data-toggle="modal"
+                                                    data-target="#modal_ubah{{ $item->id }}">Ubah</button>
                                                 <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
                                                     data-target="#modal_hapus{{ $item->id }}">Hapus</button>
 
-                                                <!-- Modal Hapus -->
-                                                <div class="modal fade" id="modal_hapus{{ $item->id }}" tabindex="-1"
+
+                                                <!-- Modal Ubah -->
+                                                <div class="modal fade" id="modal_ubah{{ $item->id }}" tabindex="-1"
                                                     role="dialog" aria-labelledby="exampleModalLabelLogout"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalLabelLogout">
-                                                                    Peringatan
-                                                                    Aksi!</h5>
+                                                                    Peringatan Aksi!</h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+
+                                                            <form action="{{ route('ubah-barang', $item->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <div class="modal-body">
+
+                                                                    <div class="container">
+
+                                                                        <div class="form-row">
+                                                                            <div
+                                                                                class="form-group col-sm-12 col-md-12 col-lg-12">
+                                                                                <label for="jasa_nama_alat">
+                                                                                    Nama Alat
+                                                                                </label>
+                                                                                <input type="text" class="form-control"
+                                                                                    id="jasa_nama_alat"
+                                                                                    name="jasa_nama_alat"
+                                                                                    value="{{ $item->jasa_nama_alat }}">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-row">
+                                                                            <div
+                                                                                class="form-group col-sm-6 col-md-6 col-lg-6">
+                                                                                <label for="barang_jumlah">Jumlah
+                                                                                    Stok</label>
+                                                                                <input type="number" class="form-control"
+                                                                                    id="barang_jumlah"
+                                                                                    name="barang_jumlah"
+                                                                                    value="{{ $item->barang_stok }}">
+                                                                            </div>
+                                                                            <div
+                                                                                class="form-group col-sm-6 col-md-6 col-lg-6">
+                                                                                <label for="barang_harga">Nilai (Harga
+                                                                                    Sewa)</label>
+                                                                                <input type="number" class="form-control"
+                                                                                    id="barang_harga" name="barang_harga"
+                                                                                    value="{{ $item->barang_nilai }}">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-outline-danger"
+                                                                        data-dismiss="modal">Batalkan</button>
+                                                                    <button type="submit" class="btn btn-primary">Ubah
+                                                                        Data</button>
+                                                                </div>
+
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END Modal Ubah -->
+
+
+
+                                                <!-- Modal Hapus -->
+                                                <div class="modal fade" id="modal_hapus{{ $item->id }}"
+                                                    tabindex="-1" role="dialog"
+                                                    aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabelLogout">
+                                                                    Peringatan
+                                                                    Aksi!</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>

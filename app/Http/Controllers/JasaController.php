@@ -46,4 +46,55 @@ class JasaController extends Controller
             return redirect()->route('daftar-jasa')->with('status', 'Gagal menghapus Data jasa.');
         }
     }
+
+    public function tambah_jasa(Request $request)
+    {
+        $jasa = new Jasa;
+
+        $barang_nama = $request->barang_nama;
+        $barang_kondisi = $request->barang_status;
+        $barang_jumlah = $request->barang_jumlah;
+        $barang_harga = $request->barang_harga;
+        $barang_kode = "BARANG" . strtoupper(Str::random(10));
+
+        $save_jasa = $jasa->create([
+            "barang_nama" => $barang_nama,
+            "barang_kondisi" => $barang_kondisi,
+            "barang_kode" => $barang_kode,
+            "barang_stok" => intval($barang_jumlah),
+            "barang_nilai" => intval($barang_harga),
+            "created_at" => now(),
+            "updated_at" => now()
+        ]);
+        $save_jasa->save();
+        if ($save_jasa == true) {
+            return redirect()->route('daftar-jasa')->with('status', 'Berhasil menambah Data Jasa baru.');
+        } else {
+            return redirect()->route('daftar-jasa')->with('status', 'Gagal menambah Data Jasa baru.');
+        }
+    }
+
+    public function ubah_jasa(Request $request, $id)
+    {
+        $barang = Barang::find($id);
+
+        $barang_nama = $request->barang_nama;
+        $barang_kondisi = $request->barang_status;
+        $barang_jumlah = $request->barang_jumlah;
+        $barang_harga = $request->barang_harga;
+
+        $update_barang = $barang->update([
+            "barang_nama" => $barang_nama,
+            "barang_kondisi" => $barang_kondisi,
+            "barang_stok" => intval($barang_jumlah),
+            "barang_nilai" => intval($barang_harga),
+            "updated_at" => now()
+        ]);
+
+        if ($update_barang == true) {
+            return redirect()->route('daftar-barang')->with('status', 'Berhasil Merubah Data barang baru.');
+        } else {
+            return redirect()->route('daftar-barang')->with('status', 'Gagal Merubah Data barang baru.');
+        }
+    }
 }

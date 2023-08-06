@@ -77,6 +77,24 @@ class BarangController extends Controller
     public function ubah_barang(Request $request, $id)
     {
         $barang = Barang::find($id);
-        dd($barang);
+
+        $barang_nama = $request->barang_nama;
+        $barang_kondisi = $request->barang_status;
+        $barang_jumlah = $request->barang_jumlah;
+        $barang_harga = $request->barang_harga;
+
+        $update_barang = $barang->update([
+            "barang_nama" => $barang_nama,
+            "barang_kondisi" => $barang_kondisi,
+            "barang_stok" => intval($barang_jumlah),
+            "barang_nilai" => intval($barang_harga),
+            "updated_at" => now()
+        ]);
+
+        if ($update_barang == true) {
+            return redirect()->route('daftar-barang')->with('status', 'Berhasil Merubah Data barang baru.');
+        } else {
+            return redirect()->route('daftar-barang')->with('status', 'Gagal Merubah Data barang baru.');
+        }
     }
 }

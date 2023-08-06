@@ -124,14 +124,16 @@
                                         @if ($users->login_level == 'admin')
                                             <td class="mx-auto btn-group">
                                                 {{-- <button type="button" class="btn btn-sm btn-success mr-1">Lihat</button> --}}
-                                                <button type="button" class="btn btn-sm btn-info mr-1">Ubah</button>
+                                                <button type="button" class="btn btn-sm btn-info mr-1" data-toggle="modal"
+                                                    data-target="#modal_ubah{{ $item->id }}">Ubah</button>
                                                 <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
                                                     data-target="#modal_hapus{{ $item->id }}">Hapus</button>
 
 
                                                 <!-- Modal Ubah -->
-                                                <div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog"
-                                                    aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+                                                <div class="modal fade" id="modal_ubah{{ $item->id }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabelLogout"
+                                                    aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
