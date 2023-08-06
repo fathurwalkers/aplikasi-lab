@@ -34,6 +34,8 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
 
     Route::group(["prefix" => "barang"], function () {
         Route::get('/', [BarangController::class, 'daftar_barang'])->name('daftar-barang');
+        Route::post('/tambah-barang', [BarangController::class, 'tambah_barang'])->name('tambah-barang');
+        Route::post('/ubah/{id}', [BarangController::class, 'ubah_barang'])->name('ubah-barang');
         Route::post('/hapus/{id}', [BarangController::class, 'hapus_barang'])->name('hapus-barang');
     });
 
