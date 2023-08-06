@@ -154,8 +154,18 @@ class PenawaranController extends Controller
     {
         $penawaran_id = $id;
         $penawaran = Penawaran::find($penawaran_id);
+
+        switch ($penawaran->penawaran_status) {
+            case 'PENDING':
+                $penawaran_status = "PROSES";
+                break;
+            case 'PROSES':
+                $penawaran_status = "KONFIRMASI";
+                break;
+        }
+
         $update_penawaran = $penawaran->update([
-            'penawaran_status' => 'KONFIRMASI',
+            'penawaran_status' => $penawaran_status,
             'updated_at' => now(),
         ]);
         if ($update_penawaran == true) {
