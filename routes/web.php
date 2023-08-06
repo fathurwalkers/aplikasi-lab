@@ -41,6 +41,8 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
 
     Route::group(["prefix" => "jasa"], function () {
         Route::get('/', [JasaController::class, 'daftar_jasa'])->name('daftar-jasa');
+        Route::post('/tambah-jasa', [JasaController::class, 'tambah_jasa'])->name('tambah-jasa');
+        Route::post('/ubah/{id}', [JasaController::class, 'ubah_jasa'])->name('ubah-jasa');
         Route::post('/hapus/{id}', [JasaController::class, 'hapus_jasa'])->name('hapus-jasa');
     });
 

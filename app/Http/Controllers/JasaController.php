@@ -76,25 +76,25 @@ class JasaController extends Controller
 
     public function ubah_jasa(Request $request, $id)
     {
-        $barang = Barang::find($id);
+        $jasa = Jasa::find($id);
 
-        $barang_nama = $request->barang_nama;
-        $barang_kondisi = $request->barang_status;
-        $barang_jumlah = $request->barang_jumlah;
-        $barang_harga = $request->barang_harga;
+        $jasa_nama_alat = $request->jasa_nama_alat;
+        $jasa_harga_care = intval($request->jasa_harga_care);
+        $jasa_harga_cleaning = intval($request->jasa_harga_cleaning);
+        $jasa_harga_kalibrasi = intval($request->jasa_harga_kalibrasi);
 
-        $update_barang = $barang->update([
-            "barang_nama" => $barang_nama,
-            "barang_kondisi" => $barang_kondisi,
-            "barang_stok" => intval($barang_jumlah),
-            "barang_nilai" => intval($barang_harga),
-            "updated_at" => now()
+        $update_jasa = $jasa->update([
+            'jasa_nama_alat' => $jasa_nama_alat,
+            'jasa_harga_care' => $jasa_harga_care,
+            'jasa_harga_cleaning' => $jasa_harga_cleaning,
+            'jasa_harga_kalibrasi' => $jasa_harga_kalibrasi,
+            'updated_at' => now()
         ]);
 
-        if ($update_barang == true) {
-            return redirect()->route('daftar-barang')->with('status', 'Berhasil Merubah Data barang baru.');
+        if ($update_jasa == true) {
+            return redirect()->route('daftar-jasa')->with('status', 'Berhasil Merubah Data Jasa baru.');
         } else {
-            return redirect()->route('daftar-barang')->with('status', 'Gagal Merubah Data barang baru.');
+            return redirect()->route('daftar-jasa')->with('status', 'Gagal Merubah Data Jasa baru.');
         }
     }
 }

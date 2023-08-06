@@ -144,7 +144,7 @@
                                                                 </button>
                                                             </div>
 
-                                                            <form action="{{ route('ubah-barang', $item->id) }}"
+                                                            <form action="{{ route('ubah-jasa', $item->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 <div class="modal-body">
@@ -166,21 +166,39 @@
 
                                                                         <div class="form-row">
                                                                             <div
-                                                                                class="form-group col-sm-6 col-md-6 col-lg-6">
-                                                                                <label for="barang_jumlah">Jumlah
+                                                                                class="form-group col-sm-12 col-md-12 col-lg-12">
+                                                                                <label for="jasa_harga_care">Jumlah
                                                                                     Stok</label>
                                                                                 <input type="number" class="form-control"
-                                                                                    id="barang_jumlah"
-                                                                                    name="barang_jumlah"
-                                                                                    value="{{ $item->barang_stok }}">
+                                                                                    id="jasa_harga_care"
+                                                                                    name="jasa_harga_care"
+                                                                                    value="{{ $item->jasa_harga_care }}">
                                                                             </div>
+                                                                        </div>
+
+                                                                        <div class="form-row">
                                                                             <div
-                                                                                class="form-group col-sm-6 col-md-6 col-lg-6">
-                                                                                <label for="barang_harga">Nilai (Harga
-                                                                                    Sewa)</label>
+                                                                                class="form-group col-sm-12 col-md-12 col-lg-12">
+                                                                                <label for="jasa_harga_cleaning">Nilai
+                                                                                    (Harga
+                                                                                    Sewa)
+                                                                                </label>
                                                                                 <input type="number" class="form-control"
-                                                                                    id="barang_harga" name="barang_harga"
-                                                                                    value="{{ $item->barang_nilai }}">
+                                                                                    id="jasa_harga_cleaning"
+                                                                                    name="jasa_harga_cleaning"
+                                                                                    value="{{ $item->jasa_harga_cleaning }}">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-row">
+                                                                            <div
+                                                                                class="form-group col-sm-12 col-md-12 col-lg-12">
+                                                                                <label for="jasa_harga_kalibrasi">Jumlah
+                                                                                    Stok</label>
+                                                                                <input type="number" class="form-control"
+                                                                                    id="jasa_harga_kalibrasi"
+                                                                                    name="jasa_harga_kalibrasi"
+                                                                                    value="{{ $item->jasa_harga_kalibrasi }}">
                                                                             </div>
                                                                         </div>
 
@@ -200,8 +218,6 @@
                                                     </div>
                                                 </div>
                                                 <!-- END Modal Ubah -->
-
-
 
                                                 <!-- Modal Hapus -->
                                                 <div class="modal fade" id="modal_hapus{{ $item->id }}"
