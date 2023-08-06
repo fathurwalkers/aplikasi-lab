@@ -94,6 +94,10 @@
                                                 <td><span style="color:green;">{{ $item->barang_kondisi }}</span></td>
                                             @break
 
+                                            @case('BARU')
+                                                <td><span style="color:blue;">{{ $item->barang_kondisi }}</span></td>
+                                            @break
+
                                             @case('RUSAK')
                                                 <td><span style="color:red;">{{ $item->barang_kondisi }}</span></td>
                                             @break

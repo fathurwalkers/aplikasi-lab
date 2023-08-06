@@ -22,10 +22,12 @@
                         </h4>
                     </div>
 
-                    <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
-                        <button type="button" class="btn btn-sm btn-info d-flex justify-content-end" data-toggle="modal"
-                            data-target="#modal_tambah">Tambah Barang</button>
-                    </div>
+                    @if ($users->login_level == 'admin')
+                        <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
+                            <button type="button" class="btn btn-sm btn-info d-flex justify-content-end" data-toggle="modal"
+                                data-target="#modal_tambah">Tambah Barang</button>
+                        </div>
+                    @endif
 
                     <!-- Modal Tambah -->
                     <div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog"
@@ -120,7 +122,9 @@
                                         <td>{{ $item->barang_kondisi }}</td>
                                         <td>{{ $item->barang_kode }}</td>
                                         <td>{{ $item->barang_stok }}</td>
-                                        <td>{{ $item->barang_nilai }}</td>
+                                        <td>
+                                            {{ 'Rp ' . number_format($item->barang_nilai, 2, ',', '.') }}
+                                        </td>
                                         @if ($users->login_level == 'admin')
                                             <td class="mx-auto btn-group">
                                                 {{-- <button type="button" class="btn btn-sm btn-success mr-1">Lihat</button> --}}

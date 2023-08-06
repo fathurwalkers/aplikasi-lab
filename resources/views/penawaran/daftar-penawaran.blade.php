@@ -148,7 +148,8 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Pembuat Penawaran</th>
-                                    <th>Nama Barang</th>
+                                    <th>Jenis Penawaran</th>
+                                    <th>Nama Barang / Pelayanan Jasa</th>
                                     <th>Kode Penawaran</th>
                                     <th>Status</th>
                                     <th>Harga Total</th>
@@ -161,7 +162,21 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->data->data_nama }}</td>
-                                        <td>{{ $item->barang->barang_nama }}</td>
+
+                                        @if ($item->barang_id !== null)
+                                            <td>Pengadaan dan Peminjaman Barang</td>
+                                        @endif
+                                        @if ($item->jasa !== null)
+                                            <td>Pelayanan Jasa</td>
+                                        @endif
+
+                                        @if ($item->barang_id !== null)
+                                            <td>{{ $item->barang->barang_nama }}</td>
+                                        @endif
+                                        @if ($item->jasa !== null)
+                                            <td>{{ $item->jasa->jasa_nama_alat }}</td>
+                                        @endif
+
                                         <td>{{ $item->penawaran_kode }}</td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-warning"
@@ -242,7 +257,7 @@
                                                                                     <span class="is-complete"></span>
                                                                                     <p>Di Konfirmasi<br>
                                                                                         <span>
-                                                                                            {{ date('d, M Y', strtotime($item->created_at)) }}
+                                                                                            Lakukan Penyelesaian
                                                                                         </span>
                                                                                     </p>
                                                                                 </div>
@@ -306,7 +321,7 @@
                                                                                     <span class="is-complete"></span>
                                                                                     <p>Di Konfirmasi<br>
                                                                                         <span>
-                                                                                            {{ date('d, M Y', strtotime($item->created_at)) }}
+                                                                                            Lakukan Penyelesaian
                                                                                         </span>
                                                                                     </p>
                                                                                 </div>

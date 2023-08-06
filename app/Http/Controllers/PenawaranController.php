@@ -80,7 +80,7 @@ class PenawaranController extends Controller
         $data_users = Data::where('login_id', $users->id)->first();
 
         $jasa = Jasa::find(intval($request->id_jasa));
-        dd($request->id_jasa);
+        // dd($request->id_jasa);
         $jenis_jasa = $request->jenis_jasa;
         switch ($jenis_jasa) {
             case 'car':
@@ -109,7 +109,7 @@ class PenawaranController extends Controller
             'penawaran_harga_total' => intval($total_harga),
             'data_id' => $data_users->id,
             'barang_id' => NULL,
-            'barang_id' => $jasa->id,
+            'jasa_id' => $jasa->id,
             'created_at' => now(),
             'updated_at' => now()
         ]);

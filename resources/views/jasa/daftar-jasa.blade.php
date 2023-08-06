@@ -22,10 +22,12 @@
                         </h4>
                     </div>
 
-                    <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
-                        <button type="button" class="btn btn-sm btn-info d-flex justify-content-end" data-toggle="modal"
-                            data-target="#modal_tambah">Tambah Layanan Jasa</button>
-                    </div>
+                    @if ($users->login_level == 'admin')
+                        <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
+                            <button type="button" class="btn btn-sm btn-info d-flex justify-content-end" data-toggle="modal"
+                                data-target="#modal_tambah">Tambah Layanan Jasa</button>
+                        </div>
+                    @endif
 
                     <!-- Modal Tambah -->
                     <div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog"
