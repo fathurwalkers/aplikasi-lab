@@ -33,53 +33,75 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabelLogout">Peringatan Aksi!</h5>
+                                    <h5 class="modal-title" id="exampleModalLabelLogout">
+                                        Peringatan Aksi!</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
 
-                                <form action="#" method="POST">
+                                <form action="{{ route('tambah-jasa') }}" method="POST">
+                                    @csrf
                                     <div class="modal-body">
 
                                         <div class="container">
 
                                             <div class="form-row">
-                                                {{-- <div class="col-sm-6 col-md-6 col-lg-6"> --}}
-                                                <div class="form-group col-sm-6 col-md-6 col-lg-6">
-                                                    <label for="barang_nama">Nama Barang </label>
-                                                    <input type="text" class="form-control" id="barang_nama"
-                                                        placeholder="Contoh : Djarum Coklat. ">
+                                                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                                    <label for="jasa_nama_alat">
+                                                        Nama Alat
+                                                    </label>
+                                                    <input type="text" class="form-control" id="jasa_nama_alat"
+                                                        name="jasa_nama_alat">
                                                 </div>
-                                                <div class="form-group col-sm-6 col-md-6 col-lg-6">
-                                                    <label for="barang_nama">Nama Barang </label>
-                                                    <select class="custom-select my-1 mr-sm-2"
-                                                        id="inlineFormCustomSelectPref">
-                                                        <option selected>Choose...</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
-                                                    </select>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                                    <label for="jasa_harga_care">Jumlah
+                                                        Stok</label>
+                                                    <input type="number" class="form-control" id="jasa_harga_care"
+                                                        name="jasa_harga_care">
                                                 </div>
-                                                {{-- </div> --}}
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                                    <label for="jasa_harga_cleaning">Nilai
+                                                        (Harga
+                                                        Sewa)
+                                                    </label>
+                                                    <input type="number" class="form-control" id="jasa_harga_cleaning"
+                                                        name="jasa_harga_cleaning">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                                    <label for="jasa_harga_kalibrasi">Jumlah
+                                                        Stok</label>
+                                                    <input type="number" class="form-control" id="jasa_harga_kalibrasi"
+                                                        name="jasa_harga_kalibrasi">
+                                                </div>
                                             </div>
 
                                         </div>
 
                                     </div>
                                     <div class="modal-footer">
-                                        @csrf
-                                        <input type="hidden" name="hapus_id" value="s">
                                         <button type="button" class="btn btn-outline-danger"
                                             data-dismiss="modal">Batalkan</button>
-                                        <button type="submit" class="btn btn-primary">Hapus</button>
+                                        <button type="submit" class="btn btn-primary">Ubah
+                                            Data</button>
                                     </div>
+
                                 </form>
 
                             </div>
                         </div>
                     </div>
                     <!-- END Modal Tambah -->
+
                 </div>
 
                 <hr />

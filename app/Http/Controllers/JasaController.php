@@ -51,19 +51,17 @@ class JasaController extends Controller
     {
         $jasa = new Jasa;
 
-        $barang_nama = $request->barang_nama;
-        $barang_kondisi = $request->barang_status;
-        $barang_jumlah = $request->barang_jumlah;
-        $barang_harga = $request->barang_harga;
-        $barang_kode = "BARANG" . strtoupper(Str::random(10));
+        $jasa_nama_alat = $request->jasa_nama_alat;
+        $jasa_harga_care = intval($request->jasa_harga_care);
+        $jasa_harga_cleaning = intval($request->jasa_harga_cleaning);
+        $jasa_harga_kalibrasi = intval($request->jasa_harga_kalibrasi);
 
         $save_jasa = $jasa->create([
-            "barang_nama" => $barang_nama,
-            "barang_kondisi" => $barang_kondisi,
-            "barang_kode" => $barang_kode,
-            "barang_stok" => intval($barang_jumlah),
-            "barang_nilai" => intval($barang_harga),
-            "created_at" => now(),
+            'jasa_nama_alat' => $jasa_nama_alat,
+            'jasa_harga_care' => $jasa_harga_care,
+            'jasa_harga_cleaning' => $jasa_harga_cleaning,
+            'jasa_harga_kalibrasi' => $jasa_harga_kalibrasi,
+            'created_at' => now(),
             "updated_at" => now()
         ]);
         $save_jasa->save();
