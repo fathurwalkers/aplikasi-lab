@@ -61,6 +61,7 @@ Route::group(["prefix" => "dashboard", "middleware" => "ceklogin"], function () 
         Route::post('/pembuatan-invoice', [InvoiceController::class, 'pembuatan_invoice'])->name('pembuatan-invoice');
         Route::post('/cetak-invoice', [InvoiceController::class, 'cetak_invoice'])->name('cetak-invoice');
         Route::post('/konfirmasi-pembayaran/{id}', [InvoiceController::class, 'konfirmasi_pembayaran'])->name('konfirmasi-pembayaran');
+        Route::post('/selesai-konfirmasi-pembayaran/{id}', [InvoiceController::class, 'selesai_konfirmasi_pembayaran'])->name('selesai-konfirmasi-pembayaran');
     });
 
     Route::group(['prefix' => 'kwitansi'], function () {

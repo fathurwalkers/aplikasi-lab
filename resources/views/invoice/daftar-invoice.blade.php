@@ -63,6 +63,10 @@
                                                 <td class="text-center text-dark">Belum dibayar</td>
                                             @break
 
+                                            @case('PROSES')
+                                                <td class="text-center text-dark">Di Proses</td>
+                                            @break
+
                                             @case('YES')
                                                 <td class="text-center text-dark">Sudah dibayar</td>
                                             @break
@@ -77,20 +81,81 @@
                                                     Invoice</button>
                                             </form>
 
-                                            @if ($item->invoice_status == 'NO')
-                                                <button type="button" class="btn btn-sm btn-info ml-1" data-toggle="modal"
-                                                    data-target="#modal_konfirmasi{{ $item->id }}">
-                                                    Konfirmasi Pembayaran</button>
+                                            @if ($users->login_level == 'user')
+                                                @if ($item->invoice_status == 'NO')
+                                                    <button type="button" class="btn btn-sm btn-info ml-1"
+                                                        data-toggle="modal"
+                                                        data-target="#modal_konfirmasi{{ $item->id }}">
+                                                        Proses Pembayaran</button>
+                                                @endif
+                                            @endif
+
+                                            @if ($users->login_level == 'admin')
+                                                @if ($item->invoice_status == 'PROSES')
+                                                    <button type="button" class="btn btn-sm btn-info ml-1"
+                                                        data-toggle="modal" data-target="#modal_selesai{{ $item->id }}">
+                                                        Lihat Bukti Pembayaran
+                                                    </button>
+                                                @endif
                                             @endif
 
                                             @if ($item->invoice_status == 'YES')
                                                 <form action="{{ route('cetak-kwitansi') }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="id_invoice" value="{{ $item->id }}">
-                                                    <button type="submit" class="btn btn-sm btn-info ml-1">Cetak
-                                                        Kwitansi</button>
+                                                    <button type="submit" class="btn btn-sm btn-info ml-1">
+                                                        Cetak Kwitansi
+                                                    </button>
                                                 </form>
                                             @endif
+
+                                            @php
+                                                $transaksi = \App\Models\Transaksi::where('invoice_id', $item->id)->first();
+                                            @endphp
+
+                                            <!-- Modal Selesai Pembayaran -->
+                                            <div class="modal fade" id="modal_selesai{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabelLogout">
+                                                                Bukti Pembayaran
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form
+                                                            action="{{ route('selesai-konfirmasi-pembayaran', $item->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <div
+                                                                            class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+                                                                            <img src="{{ asset('bukti-pembayaran') }}/{{ $transaksi->transaksi_bukti }}"
+                                                                                class=" rounded float-left" alt="..."
+                                                                                width="250">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="hidden" name="id_invoice"
+                                                                    value="{{ $item->id }}">
+                                                                <button type="button" class="btn btn-outline-danger"
+                                                                    data-dismiss="modal">Batalkan</button>
+                                                                <button type="submit" class="btn btn-sm btn-info ml-1">
+                                                                    Konfirmasi Pembayaran</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END Modal Selesai Pembayaran -->
 
                                             <!-- Modal Konfirmasi -->
                                             <div class="modal fade" id="modal_konfirmasi{{ $item->id }}" tabindex="-1"
@@ -115,12 +180,14 @@
                                                                     dapat melakukan konfirmasi pembayaran. <br />
                                                                     Ekstensi File hanya berupa ".jpg", ".jpeg".
                                                                 </p>
-                                                                <input type="file" name="foto_bukti" class="form-control"
-                                                                    id="">
+                                                                <input type="file" name="foto_bukti"
+                                                                    class="form-control" id="">
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <input type="hidden" name="id_invoice"
                                                                     value="{{ $item->id }}">
+                                                                <button type="button" class="btn btn-outline-danger"
+                                                                    data-dismiss="modal">Batalkan</button>
                                                                 <button type="submit" class="btn btn-sm btn-info ml-1">
                                                                     Konfirmasi Pembayaran</button>
                                                             </div>
@@ -132,11 +199,13 @@
 
                                             <!-- Modal Hapus -->
                                             <div class="modal fade" id="modal_hapus{{ $item->id }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+                                                role="dialog" aria-labelledby="exampleModalLabelLogout"
+                                                aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabelLogout">Peringatan
+                                                            <h5 class="modal-title" id="exampleModalLabelLogout">
+                                                                Peringatan
                                                                 Aksi!</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">

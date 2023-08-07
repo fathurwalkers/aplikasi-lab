@@ -122,8 +122,6 @@ class InvoiceController extends Controller
             $gambar = $request->file('foto_bukti')->move(public_path('bukti-pembayaran'), strtolower($random_nama_foto_bukti));
         }
 
-        dd($gambar);
-
         $invoice = Invoice::find($invoice_id);
         $session_users = session('data_login');
         $users = Login::find($session_users->id);
@@ -133,7 +131,7 @@ class InvoiceController extends Controller
         $penawaran = Penawaran::find($penawaran_invoice->penawaran_id);
 
         $update_invoice = $invoice->update([
-            'invoice_status' => 'YES',
+            'invoice_status' => 'PROSES',
             'updated_at' => now(),
         ]);
 
@@ -148,7 +146,7 @@ class InvoiceController extends Controller
                 'transaksi_kode' => $transaksi_kode,
                 'transaksi_status' => $transaksi_status,
                 'transaksi_harga_total' => $penawaran->penawaran_harga_total,
-                'transaksi_bukti' => NULL,
+                'transaksi_bukti' => $random_nama_foto_bukti,
                 'transaksi_kwitansi' => NULL,
                 'invoice_id' => $invoice->id,
                 'created_at' => now(),
@@ -158,6 +156,27 @@ class InvoiceController extends Controller
             return redirect()->route('daftar-invoice')->with('status', 'Berhasil melakukan konfirmasi Data Invoice.');
         } else {
             return redirect()->route('daftar-invoice')->with('status', 'Gagal melakukan konfirmasi Data Invoice.');
+        }
+    }
+
+    public function selesai_konfirmasi_pembayaran(Request $request, $id)
+    {
+        $invoice_id = $id;
+        $invoice = Invoice::find($invoice_id);
+        $session_users = session('data_login');
+        $users = Login::find($session_users->id);
+        $penawaran_invoice = PenawaranInvoice::where('invoice_id', $invoice->id)->first();
+        $penawaran = Penawaran::find($penawaran_invoice->penawaran_id);
+
+        $update_invoice = $invoice->update([
+            'invoice_status' => 'YES',
+            'updated_at' => now(),
+        ]);
+
+        if ($update_invoice == true) {
+            return redirect()->route('daftar-invoice')->with('status', 'Pembayaran telah dikonfirmasi');
+        } else {
+            return redirect()->route('daftar-invoice')->with('status', 'Gagal melakukan konfirmasi Pembayaran.');
         }
     }
 
