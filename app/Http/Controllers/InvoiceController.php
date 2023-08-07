@@ -35,6 +35,7 @@ class InvoiceController extends Controller
             $invoice_kode = "INVC" . Str::random(5);
             $invoice_status = "NO"; // NO = Belum Bayar / YES = Sudah Bayar
             $save_invoice = $invoice->create([
+                'invoice_pembuat' => $data_users->data_nama,
                 'invoice_kode' => strtoupper($invoice_kode),
                 'invoice_status' => $invoice_status,
                 'created_at' => now(),
@@ -67,6 +68,7 @@ class InvoiceController extends Controller
                     $array_penawaran = Arr::prepend($array_penawaran, $item["id"]);
                 }
                 $penawaran_invoice = PenawaranInvoice::whereIn('penawaran_id', $array_penawaran)->get();
+                // dd($penawaran_invoice);
                 foreach ($penawaran_invoice as $items) {
                     $cari_invoice = Invoice::find($items->invoice_id)->toArray();
                     $array_id_invoice = Arr::prepend($array_id_invoice, $cari_invoice["id"]);

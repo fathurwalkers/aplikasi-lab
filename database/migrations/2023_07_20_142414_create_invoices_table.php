@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('invoice', function (Blueprint $table) {
             $table->id();
 
+            $table->string('invoice_pembuat')->nullable();
             $table->string('invoice_kode')->nullable();
             $table->string('invoice_status')->nullable(); // BELUM LUNAS - LUNAS
 

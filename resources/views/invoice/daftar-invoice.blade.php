@@ -56,7 +56,7 @@
                                 @foreach ($invoice as $item)
                                     <tr>
                                         <td class="text-center text-dark">{{ $loop->iteration }}</td>
-                                        <td class="text-center text-dark">{{ $users->login_nama }}</td>
+                                        <td class="text-center text-dark">{{ $item->penawaran->data->data_nama }}</td>
                                         <td class="text-center text-dark">{{ $item->invoice_kode }}</td>
                                         @switch($item->invoice_status)
                                             @case('NO')
