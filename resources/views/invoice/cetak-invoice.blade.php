@@ -118,7 +118,7 @@
                                 $hargaSetelahPotonganPPN = $harga - $potonganPPN; // Harga setelah potongan PPN
                                 return $hargaSetelahPotonganPPN;
                             }
-                            
+
                             $hargaSebelumPPN = $penawaran->penawaran_harga_total;
                             $hargaSetelahPotonganPPN = hitungHargaSetelahPotonganPPN($hargaSebelumPPN);
                         @endphp
@@ -166,7 +166,7 @@
     </script>
 
     <script>
-        // window.print()
+        window.print()
     </script>
 </body>
 
