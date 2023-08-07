@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
-    <title>Invoice</title>
+    <title>INVOICE - {{ strtoupper($invoice->invoice_kode) }}</title>
 
     <style>
         .table-content thead {
@@ -87,18 +87,12 @@
                     </thead>
                     <tbody class="text-center">
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">#</th>
                             <td>
                                 {{ $penawaran->penawaran_deskripsi }}
                             </td>
                             <td>Rp {{ $penawaran->penawaran_harga_total }}</td>
                             <td>Rp {{ $penawaran->penawaran_harga_total }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
                         </tr>
                     </tbody>
                 </table>
@@ -111,18 +105,35 @@
                     <tr>
                         <td class="px-5">Subtotal</td>
                         <td>Rp</td>
-                        <td class="text-end">{{ $penawaran->penawaran_harga_total }}</td>
+                        <td class="text-end">
+                            {{ 'Rp ' . number_format($penawaran->penawaran_harga_total, 2, ',', '.') }}
+                        </td>
                     </tr>
                     <tr>
-                        <td class="px-5">PPN 10%</td>
+                        @php
+                            function hitungHargaSetelahPotonganPPN($harga)
+                            {
+                                $ppnPersen = 11; // Persentase PPN
+                                $potonganPPN = ($harga * $ppnPersen) / 100; // Menghitung nilai potongan PPN
+                                $hargaSetelahPotonganPPN = $harga - $potonganPPN; // Harga setelah potongan PPN
+                                return $hargaSetelahPotonganPPN;
+                            }
+                            
+                            $hargaSebelumPPN = $penawaran->penawaran_harga_total;
+                            $hargaSetelahPotonganPPN = hitungHargaSetelahPotonganPPN($hargaSebelumPPN);
+                        @endphp
+                        <td class="px-5">PPN 11%</td>
                         <td>Rp</td>
-                        <td class="text-end">350,000.00</td>
+                        <td class="text-end">
+                            {{ 'Rp ' . number_format($hargaSetelahPotonganPPN, 2, ',', '.') }}
+                        </td>
                     </tr>
                     <tr>
                         <td class="px-5 fw-bold">TOTAL</td>
                         <td class="p-1" style="background-color: #abe9f8">Rp</td>
                         <td class="text-end p-1" style="background-color: #abe9f8">
-                            {{ $penawaran->penawaran_harga_total }}</td>
+                            {{ 'Rp ' . number_format($hargaSetelahPotonganPPN, 2, ',', '.') }}
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -155,7 +166,7 @@
     </script>
 
     <script>
-        window.print()
+        // window.print()
     </script>
 </body>
 

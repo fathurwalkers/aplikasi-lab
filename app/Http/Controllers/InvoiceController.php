@@ -135,6 +135,10 @@ class InvoiceController extends Controller
             'updated_at' => now(),
         ]);
 
+        $ppnPersen = 11; // Persentase PPN
+        $potonganPPN = ($penawaran->penawaran_harga_total * $ppnPersen) / 100; // Menghitung nilai potongan PPN
+        $hargaSetelahPotonganPPN = $penawaran->penawaran_harga_total - $potonganPPN; // Harga setelah potongan PPN
+
         if ($update_invoice == true) {
 
             $transaksi_kode = "KWTNS" . Str::random(5);
@@ -145,7 +149,7 @@ class InvoiceController extends Controller
                 'transaksi_pemilik' => $invoice->invoice_pembuat,
                 'transaksi_kode' => $transaksi_kode,
                 'transaksi_status' => $transaksi_status,
-                'transaksi_harga_total' => $penawaran->penawaran_harga_total,
+                'transaksi_harga_total' => $hargaSetelahPotonganPPN,
                 'transaksi_bukti' => $random_nama_foto_bukti,
                 'transaksi_kwitansi' => NULL,
                 'invoice_id' => $invoice->id,

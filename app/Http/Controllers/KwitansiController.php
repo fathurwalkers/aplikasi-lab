@@ -14,8 +14,16 @@ class KwitansiController extends Controller
     {
         $invoice_id = $request->id_invoice;
 
-        $penawaran_invoice = {}
+        $penawaran_invoice = PenawaranInvoice::where('invoice_id', intval($invoice_id))->first();
 
-        return view('kwitansi.cetak-kwitansi');
+        $penawaran = Penawaran::find($penawaran_invoice->penawaran_id);
+        $invoice = Invoice::find($penawaran_invoice->invoice_id);
+        $transaksi = Transaksi::where('invoice_id', $invoice->id)->first();
+
+        return view('kwitansi.cetak-kwitansi', [
+            'penawaran' => $penawaran,
+            'invoice' => $invoice,
+            'transaksi' => $transaksi,
+        ]);
     }
 }

@@ -113,49 +113,52 @@
                                                 $transaksi = \App\Models\Transaksi::where('invoice_id', $item->id)->first();
                                             @endphp
 
-                                            <!-- Modal Selesai Pembayaran -->
-                                            <div class="modal fade" id="modal_selesai{{ $item->id }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabelLogout">
-                                                                Bukti Pembayaran
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form
-                                                            action="{{ route('selesai-konfirmasi-pembayaran', $item->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            <div class="modal-body">
-                                                                <div class="container">
-                                                                    <div class="row">
-                                                                        <div
-                                                                            class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                                                            <img src="{{ asset('bukti-pembayaran') }}/{{ $transaksi->transaksi_bukti }}"
-                                                                                class=" rounded float-left" alt="..."
-                                                                                width="250">
+                                            @if ($transaksi !== null)
+                                                <!-- Modal Selesai Pembayaran -->
+                                                <div class="modal fade" id="modal_selesai{{ $item->id }}"
+                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabelLogout">
+                                                                    Bukti Pembayaran
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form
+                                                                action="{{ route('selesai-konfirmasi-pembayaran', $item->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <div class="modal-body">
+                                                                    <div class="container">
+                                                                        <div class="row">
+                                                                            <div
+                                                                                class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+                                                                                <img src="{{ asset('bukti-pembayaran') }}/{{ $transaksi->transaksi_bukti }}"
+                                                                                    class=" rounded float-left"
+                                                                                    alt="..." width="250">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <input type="hidden" name="id_invoice"
-                                                                    value="{{ $item->id }}">
-                                                                <button type="button" class="btn btn-outline-danger"
-                                                                    data-dismiss="modal">Batalkan</button>
-                                                                <button type="submit" class="btn btn-sm btn-info ml-1">
-                                                                    Konfirmasi Pembayaran</button>
-                                                            </div>
-                                                        </form>
+                                                                <div class="modal-footer">
+                                                                    <input type="hidden" name="id_invoice"
+                                                                        value="{{ $item->id }}">
+                                                                    <button type="button" class="btn btn-outline-danger"
+                                                                        data-dismiss="modal">Batalkan</button>
+                                                                    <button type="submit" class="btn btn-sm btn-info ml-1">
+                                                                        Konfirmasi Pembayaran</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- END Modal Selesai Pembayaran -->
+                                                <!-- END Modal Selesai Pembayaran -->
+                                            @endif
 
                                             <!-- Modal Konfirmasi -->
                                             <div class="modal fade" id="modal_konfirmasi{{ $item->id }}" tabindex="-1"

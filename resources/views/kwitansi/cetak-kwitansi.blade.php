@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
-    <title>Invoice</title>
+    <title>KWITANSI PEMBAYARAN - {{ strtoupper($transaksi->transaksi_kode) }}</title>
 
     <style>
         .table-content thead {
@@ -74,19 +74,73 @@
                     <tr class=" d-block mb-3" style="margin-left: 88px;">
                         <td style="padding: 0 50px;">Telah terima dari </td>
                         <td style="padding-left: 80px;">:</td>
-                        <td class="fw-bold">PT Tiga Raksa Satria</td>
+                        <td class="fw-bold">
+                            {{ $invoice->invoice_pembuat }}
+                        </td>
                     </tr>
                     <tr class=" d-block mb-2" style="margin-left: 88px;">
                         <td style="padding: 0 50px;">Uang Sejumlah </td>
                         <td style="padding-left: 91px;">:</td>
-                        <td class="fw-bold py-3" style="background-color: #abe9f8;">#Tiga Juta Delapan Ratus Lima Puluh
-                            Ribu Rupiah#</td>
+                        <td class="fw-bold py-3" style="background-color: #abe9f8;">
+
+                            @php
+                                function terbilang($angka)
+                                {
+                                    $angka = floatval($angka);
+                                    $angka_format = number_format($angka, 0, ',', '.');
+                                    $angka_array = explode('.', $angka_format);
+                                
+                                    $bilangan = ['', 'Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam', 'Tujuh', 'Delapan', 'Sembilan', 'Sepuluh', 'Sebelas'];
+                                
+                                    $terbilang = '';
+                                
+                                    if ($angka < 12) {
+                                        $terbilang = ' ' . $bilangan[$angka];
+                                    } elseif ($angka < 20) {
+                                        $terbilang = terbilang($angka - 10) . ' Belas';
+                                    } elseif ($angka < 100) {
+                                        $terbilang = terbilang(intval($angka / 10)) . ' Puluh' . terbilang($angka % 10);
+                                    } elseif ($angka < 200) {
+                                        $terbilang = ' Seratus' . terbilang($angka - 100);
+                                    } elseif ($angka < 1000) {
+                                        $terbilang = terbilang(intval($angka / 100)) . ' Ratus' . terbilang($angka % 100);
+                                    } elseif ($angka < 2000) {
+                                        $terbilang = ' Seribu' . terbilang($angka - 1000);
+                                    } elseif ($angka < 1000000) {
+                                        $terbilang = terbilang(intval($angka / 1000)) . ' Ribu' . terbilang($angka % 1000);
+                                    } elseif ($angka < 1000000000) {
+                                        $terbilang = terbilang(intval($angka / 1000000)) . ' Juta' . terbilang($angka % 1000000);
+                                    } elseif ($angka < 1000000000000) {
+                                        $terbilang = terbilang(intval($angka / 1000000000)) . ' Milyar' . terbilang($angka % 1000000000);
+                                    } elseif ($angka < 1000000000000000) {
+                                        $terbilang = terbilang(intval($angka / 1000000000000)) . ' Trilyun' . terbilang($angka % 1000000000000);
+                                    }
+                                
+                                    return $terbilang;
+                                }
+                                
+                                $angka = $transaksi->transaksi_harga_total;
+                                $terbilang = terbilang($angka);
+                            @endphp
+
+                            #{{ $terbilang }} Rupiah#
+                        </td>
                     </tr>
                     <tr class=" d-block mb-3" style="margin-left: 88px;">
                         <td style="padding: 0 50px;">Untuk Pembayaran</td>
                         <td style="padding-left: 65px;">:</td>
-                        <td class="">Pembayaran Perbaikan Autoklaf Hirayama HVA-85 <br>
-                            <font class="fw-bold">(Invoice no. 008/INV/RMN/III/2022)</font>
+                        <td class="">
+                            {{ $penawaran->penawaran_deskripsi }}
+                            <br />
+                            @if ($penawaran->barang_id !== null)
+                                {{ $penawaran->barang->barang_nama }}
+                            @endif
+                            @if ($penawaran->jasa_id !== null)
+                                {{ $penawaran->jasa->jasa_nama_alat }}
+                                <br />
+                            @endif
+                            <br />
+                            <font class="fw-bold">(Kode Invoice : {{ $invoice->invoice_kode }})</font>
                         </td>
                     </tr>
                 </table>
@@ -96,11 +150,15 @@
 
         <div class="kuitansi-info pt-5">
             <div class="date-info text-end px-5 mx-5 mb-4">
-                <p>Yogyakarta, 30 Maret 2022</p>
+                <p>Yogyakarta, {{ date('d, M Y', strtotime($transaksi->created_at)) }}</p>
             </div>
             <div class="info-dialog d-flex justify-content-between" style="padding: 0 90px;">
                 <div class="price-box ms-5">
-                    <h3 class="p-3" style="background-color: #abe9f8;">Rp <font class="ms-5">3,850,000</font>
+                    <h3 class="p-3" style="background-color: #abe9f8;">
+                        Rp
+                        <font class="ms-5">
+                            {{ 'Rp ' . number_format($transaksi->transaksi_harga_total, 2, ',', '.') }}
+                        </font>
                     </h3>
                 </div>
                 <div class="penyetor-box">
@@ -121,8 +179,8 @@
         <div class="footer mt-5 mx-5 px-5">
             <div class="dialog-info mx-5" style="width: 270px">
                 <div class="dialog-box border border-2 border-dark p-2">
-                    <p class="mb-0">*) Pembayaran bisa dilakukan dengan Transfer ke rekening a.n PT. Rumah Mulya
-                        Nusantara,</p>
+                    <p class="mb-0">*)
+                        Pembayaran bisa dilakukan dengan Transfer ke rekening a.n PT. Rumah Mulya Nusantara,</p>
                     <p class="mb-0">Bank Mandiri No. 137-00-1815445-6</p>
                     <p class="mb-0 fw-bold">GARANSI SERVICE 1 Bulan</p>
                 </div>
