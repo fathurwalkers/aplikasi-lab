@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 30 Jul 2023 pada 09.16
+-- Waktu pembuatan: 06 Agu 2023 pada 11.30
 -- Versi server: 5.7.33
 -- Versi PHP: 7.4.19
 
@@ -146,7 +146,8 @@ INSERT INTO `invoice` (`id`, `invoice_kode`, `invoice_status`, `created_at`, `up
 (1, 'INVCRT0KY', 'NO', '2023-07-21 01:46:50', '2023-07-21 01:46:50'),
 (2, 'INVC3RBMA', 'NO', '2023-07-21 06:24:38', '2023-07-21 06:24:38'),
 (3, 'INVCC6BQI', 'NO', '2023-07-21 06:42:05', '2023-07-21 06:42:05'),
-(4, 'INVCAMMGE', 'NO', '2023-07-21 06:58:58', '2023-07-21 06:58:58');
+(4, 'INVCAMMGE', 'NO', '2023-07-21 06:58:58', '2023-07-21 06:58:58'),
+(5, 'INVCMQJRR', 'NO', '2023-08-06 18:12:34', '2023-08-06 18:12:34');
 
 -- --------------------------------------------------------
 
@@ -307,7 +308,9 @@ CREATE TABLE `penawaran` (
 --
 
 INSERT INTO `penawaran` (`id`, `penawaran_kode`, `penawaran_deskripsi`, `penawaran_status`, `penawaran_harga_total`, `penawaran_tipe`, `data_id`, `barang_id`, `jasa_id`, `created_at`, `updated_at`) VALUES
-(4, 'PNRWNVEFMTPIHIN', 'dffdfdf', 'KONFIRMASI', 87262, NULL, 1, 2, NULL, '2023-07-21 06:41:54', '2023-07-21 06:42:00');
+(4, 'PNRWNVEFMTPIHIN', 'dffdfdf', 'KONFIRMASI', 87262, NULL, 1, 2, NULL, '2023-07-21 06:41:54', '2023-07-21 06:42:00'),
+(5, 'PNRWNMKSTXR0PEF', 'Pelayanan Jasa', 'KONFIRMASI', 111, NULL, 1, 1, NULL, '2023-08-06 18:12:26', '2023-08-06 18:27:43'),
+(6, 'PNRWNXFV0WPRJRN', 'Pelayanan Jasa', 'PROSES', 111, NULL, 1, 5, NULL, '2023-08-06 18:12:26', '2023-08-06 18:28:38');
 
 -- --------------------------------------------------------
 
@@ -329,7 +332,8 @@ CREATE TABLE `penawaran_invoice` (
 
 INSERT INTO `penawaran_invoice` (`id`, `penawaran_id`, `invoice_id`, `created_at`, `updated_at`) VALUES
 (3, 4, 3, '2023-07-21 06:42:05', '2023-07-21 06:42:05'),
-(4, 4, 4, '2023-07-21 06:58:58', '2023-07-21 06:58:58');
+(4, 4, 4, '2023-07-21 06:58:58', '2023-07-21 06:58:58'),
+(5, 4, 5, '2023-08-06 18:12:34', '2023-08-06 18:12:34');
 
 -- --------------------------------------------------------
 
@@ -507,7 +511,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `jasa`
@@ -519,7 +523,7 @@ ALTER TABLE `jasa`
 -- AUTO_INCREMENT untuk tabel `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -531,13 +535,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `penawaran`
 --
 ALTER TABLE `penawaran`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `penawaran_invoice`
 --
 ALTER TABLE `penawaran_invoice`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`

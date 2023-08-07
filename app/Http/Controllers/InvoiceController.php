@@ -10,6 +10,18 @@ use App\Models\{Login, Data, Barang, Invoice, Lab, Penawaran, PenawaranInvoice, 
 
 class InvoiceController extends Controller
 {
+    public function cetak_invoice(Request $request)
+    {
+        $id_invoice = $request->id_invoice;
+        $invoice = Invoice::find($id_invoice);
+        $penawaran_invoice = PenawaranInvoice::where('invoice_id', $invoice->id)->first();
+        $penawaran = Penawaran::find($penawaran_invoice->penawaran_id);
+        return view('invoice.cetak-invoice', [
+            'invoice' => $invoice,
+            'penawaran' => $penawaran,
+        ]);
+    }
+
     public function pembuatan_invoice(Request $request)
     {
         $session_users = session('data_login');
@@ -41,28 +53,16 @@ class InvoiceController extends Controller
         return redirect()->route('daftar-invoice')->with('status', 'Invoice telah berhasil dibuat.');
     }
 
-    public function cetak_invoice(Request $request)
-    {
-        $id_invoice = $request->id_invoice;
-        $invoice = Invoice::find($id_invoice);
-        $penawaran_invoice = PenawaranInvoice::where('invoice_id', $invoice->id)->first();
-        $penawaran = Penawaran::find($penawaran_invoice->penawaran_id);
-        return view('invoice.cetak-invoice', [
-            'invoice' => $invoice,
-            'penawaran' => $penawaran,
-        ]);
-    }
-
     public function daftar_invoice()
     {
         $session_users = session('data_login');
         $users = Login::find($session_users->id);
         $data_users = Data::where('login_id', $users->id)->first();
         switch ($users->login_level) {
-            case 'user':
+            case 'admin':
+                $penawaran = Penawaran::all()->toArray();
                 $array_penawaran = [];
                 $array_id_invoice = [];
-                $penawaran = Penawaran::where('data_id', $data_users->id)->get()->toArray();
                 foreach ($penawaran as $item) {
                     $array_penawaran = Arr::prepend($array_penawaran, $item["id"]);
                 }
@@ -76,8 +76,19 @@ class InvoiceController extends Controller
                     'invoice' => $invoice
                 ]);
                 break;
-            case 'admin':
-                $invoice = Invoice::all();
+            case 'user':
+                $array_penawaran = [];
+                $array_id_invoice = [];
+                $penawaran = Penawaran::where('data_id', $data_users->id)->get()->toArray();
+                foreach ($penawaran as $item) {
+                    $array_penawaran = Arr::prepend($array_penawaran, $item["id"]);
+                }
+                $penawaran_invoice = PenawaranInvoice::whereIn('penawaran_id', $array_penawaran)->get();
+                foreach ($penawaran_invoice as $items) {
+                    $cari_invoice = Invoice::find($items->invoice_id)->toArray();
+                    $array_id_invoice = Arr::prepend($array_id_invoice, $cari_invoice["id"]);
+                }
+                $invoice = Invoice::findMany($array_id_invoice);
                 return view('invoice.daftar-invoice', [
                     'invoice' => $invoice
                 ]);
@@ -102,6 +113,11 @@ class InvoiceController extends Controller
 
         if ($update_invoice == true) {
 
+            dd($invoice->penawaran_harga_total);
+
+            // $transaksi_kode = "KWTNS" . Str::random(5);
+            // $transaksi_status = "SELESAI";
+            // $transaksi_status = "SELESAI";
             // $kwitansi = new Transaksi;
             // $save_kwitansi = $kwitansi->create([
             //     'transaksi_pemilik' => $data_users->data_nama,
