@@ -46,6 +46,12 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Pembuat Penawaran</th>
+                                    <th>
+                                        Jenis Penawaran
+                                    </th>
+                                    <th>
+                                        Nama Item
+                                    </th>
                                     <th>Kode Invoice</th>
                                     <th>Status</th>
                                     <th>Opsi</th>
@@ -57,6 +63,27 @@
                                     <tr>
                                         <td class="text-center text-dark">{{ $loop->iteration }}</td>
                                         <td class="text-center text-dark">{{ $item->invoice_pembuat }}</td>
+                                        <td class="text-center text-dark">
+                                            @php
+                                                $penawaran_invoice = \App\Models\PenawaranInvoice::where('invoice_id', $item->id)->first();
+                                                $penawaran_id = $penawaran_invoice->penawaran_id;
+                                                $penawaran = \App\Models\Penawaran::find($penawaran_id);
+                                            @endphp
+                                            @if ($penawaran->barang_id !== null)
+                                                Pengadaan dan Peminjaman
+                                            @endif
+                                            @if ($penawaran->jasa_id !== null)
+                                                Pelayanan Jasa
+                                            @endif
+                                        </td>
+                                        <td class="text-center text-dark">
+                                            @if ($penawaran->barang_id !== null)
+                                                {{ $penawaran->barang->barang_nama }}
+                                            @endif
+                                            @if ($penawaran->jasa_id !== null)
+                                                {{ $penawaran->jasa->jasa_nama_alat }}
+                                            @endif
+                                        </td>
                                         <td class="text-center text-dark">{{ $item->invoice_kode }}</td>
                                         @switch($item->invoice_status)
                                             @case('NO')
@@ -74,16 +101,19 @@
                                         <td class="mx-auto d-flex justify-content-center">
                                             {{-- <button type="button" class="btn btn-sm btn-success mr-1">Lihat</button> --}}
                                             {{-- <button type="button" class="btn btn-sm btn-info mr-1">Ubah</button> --}}
-                                            <form action="{{ route('cetak-invoice') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="id_invoice" value="{{ $item->id }}">
-                                                <button type="submit" class="btn btn-sm btn-info mr-2">Cetak
-                                                    Invoice</button>
-                                            </form>
+
+                                            @if ($users->login_level == 'user')
+                                                <form action="{{ route('cetak-invoice') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id_invoice" value="{{ $item->id }}">
+                                                    <button type="submit" class="btn btn-sm btn-info mr-2">Cetak
+                                                        Invoice</button>
+                                                </form>
+                                            @endif
 
                                             @if ($users->login_level == 'user')
                                                 @if ($item->invoice_status == 'NO')
-                                                    <button type="button" class="btn btn-sm btn-info ml-1"
+                                                    <button type="button" class="btn btn-sm btn-primary ml-1"
                                                         data-toggle="modal"
                                                         data-target="#modal_konfirmasi{{ $item->id }}">
                                                         Proses Pembayaran</button>
@@ -92,21 +122,24 @@
 
                                             @if ($users->login_level == 'admin')
                                                 @if ($item->invoice_status == 'PROSES')
-                                                    <button type="button" class="btn btn-sm btn-info ml-1"
+                                                    <button type="button" class="btn btn-sm btn-success ml-1"
                                                         data-toggle="modal" data-target="#modal_selesai{{ $item->id }}">
                                                         Lihat Bukti Pembayaran
                                                     </button>
                                                 @endif
                                             @endif
 
-                                            @if ($item->invoice_status == 'YES')
-                                                <form action="{{ route('cetak-kwitansi') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="id_invoice" value="{{ $item->id }}">
-                                                    <button type="submit" class="btn btn-sm btn-info ml-1">
-                                                        Cetak Kwitansi
-                                                    </button>
-                                                </form>
+                                            @if ($users->login_level == 'user')
+                                                @if ($item->invoice_status == 'YES')
+                                                    <form action="{{ route('cetak-kwitansi') }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="id_invoice"
+                                                            value="{{ $item->id }}">
+                                                        <button type="submit" class="btn btn-sm btn-info ml-1">
+                                                            Cetak Kwitansi
+                                                        </button>
+                                                    </form>
+                                                @endif
                                             @endif
 
                                             @php
