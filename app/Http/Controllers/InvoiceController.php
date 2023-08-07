@@ -68,7 +68,6 @@ class InvoiceController extends Controller
                     $array_penawaran = Arr::prepend($array_penawaran, $item["id"]);
                 }
                 $penawaran_invoice = PenawaranInvoice::whereIn('penawaran_id', $array_penawaran)->get();
-                // dd($penawaran_invoice);
                 foreach ($penawaran_invoice as $items) {
                     $cari_invoice = Invoice::find($items->invoice_id)->toArray();
                     $array_id_invoice = Arr::prepend($array_id_invoice, $cari_invoice["id"]);
@@ -101,13 +100,38 @@ class InvoiceController extends Controller
     public function konfirmasi_pembayaran(Request $request, $id)
     {
         $invoice_id = $id;
+
+        $req_foto_bukti = $request->file('foto_bukti');
+        // dd($req_foto_bukti);
+        if ($req_foto_bukti == null) {
+            $random_nama_foto_bukti = null;
+            return redirect()->route('daftar-invoice')->with('status', 'Gagal melakukan konfirmasi, foto bukti tidak ada!');
+        } else {
+            $req_foto_bukti = $request->file('foto_bukti');
+            $ext_dokumen = $req_foto_bukti->getClientOriginalExtension();
+            $getName = $req_foto_bukti->getClientOriginalName();
+            $explode_text = explode(".", $getName);
+            foreach ($explode_text as $value) {
+                $value = strtolower($value);
+                if ($value == "php" || $value == "png" || $value == "webp" || $value == "html" || $value == "asp" || $value == "pphp") {
+                    return redirect()->route('daftar-invoice')->with('status', 'Dokumen Extensi selain (.JPG / .JPEG) tidak dapat diupload.')->withInput();
+                    break;
+                }
+            }
+            $random_nama_foto_bukti = Str::random(10) . "." .$ext_dokumen;
+            $gambar = $request->file('foto_bukti')->move(public_path('bukti-pembayaran'), strtolower($random_nama_foto_bukti));
+        }
+
+        dd($gambar);
+
         $invoice = Invoice::find($invoice_id);
         $session_users = session('data_login');
         $users = Login::find($session_users->id);
         $data_users = Data::where('login_id', $users->id)->first();
         $invoice_kode = "TNKWIT" . Str::random(5);
-        $penawaran_invoice = PenawaranInvoice::where('invoice_id', $invoice->id)->get();
-        dd($penawaran_invoice);
+        $penawaran_invoice = PenawaranInvoice::where('invoice_id', $invoice->id)->first();
+        $penawaran = Penawaran::find($penawaran_invoice->penawaran_id);
+
         $update_invoice = $invoice->update([
             'invoice_status' => 'YES',
             'updated_at' => now(),
@@ -115,23 +139,21 @@ class InvoiceController extends Controller
 
         if ($update_invoice == true) {
 
-            dd($invoice->penawaran_harga_total);
-
-            // $transaksi_kode = "KWTNS" . Str::random(5);
-            // $transaksi_status = "SELESAI";
-            // $transaksi_status = "SELESAI";
-            // $kwitansi = new Transaksi;
-            // $save_kwitansi = $kwitansi->create([
-            //     'transaksi_pemilik' => $data_users->data_nama,
-            //     'transaksi_kode' => ,
-            //     'transaksi_status' => ,
-            //     'transaksi_harga_total' => ,
-            //     'transaksi_bukti' => ,
-            //     'transaksi_kwitansi' => ,
-            //     'invoice_id' => $invoice->id,
-            //     'created_at' => now(),
-            //     'updated_at' => now()
-            // ]);
+            $transaksi_kode = "KWTNS" . Str::random(5);
+            $transaksi_status = "SELESAI";
+            $transaksi_status = "SELESAI";
+            $kwitansi = new Transaksi;
+            $save_kwitansi = $kwitansi->create([
+                'transaksi_pemilik' => $invoice->invoice_pembuat,
+                'transaksi_kode' => $transaksi_kode,
+                'transaksi_status' => $transaksi_status,
+                'transaksi_harga_total' => $penawaran->penawaran_harga_total,
+                'transaksi_bukti' => NULL,
+                'transaksi_kwitansi' => NULL,
+                'invoice_id' => $invoice->id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
 
             return redirect()->route('daftar-invoice')->with('status', 'Berhasil melakukan konfirmasi Data Invoice.');
         } else {

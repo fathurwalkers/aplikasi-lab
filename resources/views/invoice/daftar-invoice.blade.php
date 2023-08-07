@@ -56,7 +56,7 @@
                                 @foreach ($invoice as $item)
                                     <tr>
                                         <td class="text-center text-dark">{{ $loop->iteration }}</td>
-                                        <td class="text-center text-dark">{{ $item->penawaran->data->data_nama }}</td>
+                                        <td class="text-center text-dark">{{ $item->invoice_pembuat }}</td>
                                         <td class="text-center text-dark">{{ $item->invoice_kode }}</td>
                                         @switch($item->invoice_status)
                                             @case('NO')
@@ -77,16 +77,10 @@
                                                     Invoice</button>
                                             </form>
 
-                                            @if ($users->login_level == 'admin')
-                                                @if ($item->invoice_status == 'NO')
-                                                    <form action="{{ route('konfirmasi-pembayaran', $item->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="id_invoice" value="{{ $item->id }}">
-                                                        <button type="submit" class="btn btn-sm btn-info ml-1">
-                                                            Konfirmasi Pembayaran</button>
-                                                    </form>
-                                                @endif
+                                            @if ($item->invoice_status == 'NO')
+                                                <button type="button" class="btn btn-sm btn-info ml-1" data-toggle="modal"
+                                                    data-target="#modal_konfirmasi{{ $item->id }}">
+                                                    Konfirmasi Pembayaran</button>
                                             @endif
 
                                             @if ($item->invoice_status == 'YES')
@@ -97,6 +91,44 @@
                                                         Kwitansi</button>
                                                 </form>
                                             @endif
+
+                                            <!-- Modal Konfirmasi -->
+                                            <div class="modal fade" id="modal_konfirmasi{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabelLogout">
+                                                                Upload bukti pembayaran
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('konfirmasi-pembayaran', $item->id) }}"
+                                                            method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <p>
+                                                                    Silahkan kirimkan foto bukti transaksi pembayaran untuk
+                                                                    dapat melakukan konfirmasi pembayaran. <br />
+                                                                    Ekstensi File hanya berupa ".jpg", ".jpeg".
+                                                                </p>
+                                                                <input type="file" name="foto_bukti" class="form-control"
+                                                                    id="">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="hidden" name="id_invoice"
+                                                                    value="{{ $item->id }}">
+                                                                <button type="submit" class="btn btn-sm btn-info ml-1">
+                                                                    Konfirmasi Pembayaran</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END Modal Konfirmasi -->
 
                                             <!-- Modal Hapus -->
                                             <div class="modal fade" id="modal_hapus{{ $item->id }}" tabindex="-1"
